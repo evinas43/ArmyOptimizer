@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ArmyOptimizerLogo.png" />
+    <None Remove="Images\barbarian3.png" />
+    <None Remove="Images\ClanWarLogo.jpg" />
+    <None Remove="Images\clashOfClansLogo.jpg" />
+    <None Remove="Images\ClashOfClansLogo.png" />
+    <None Remove="Images\logo_corona.png" />
+    <None Remove="Images\logo_escudo.png" />
+    <None Remove="Images\logo_estrella.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.1-ci1271" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ArmyOptimizerLogo.png" />
+    <Resource Include="Images\barbarian3.png" />
+    <Resource Include="Images\ClanWarLogo.jpg" />
+    <Resource Include="Images\ClashOfClansLogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logo_corona.png" />
+    <Resource Include="Images\logo_escudo.png" />
+    <Resource Include="Images\logo_estrella.png" />
+  </ItemGroup>
+
+</Project>

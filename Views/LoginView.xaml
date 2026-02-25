@@ -1,0 +1,282 @@
+﻿<UserControl x:Class="ArmyOptimizer.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0B1622">
+
+    <Grid>
+
+        <!-- Main Center Container -->
+        <Grid HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       MaxWidth="500" Width="392">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Icons -->
+                <RowDefinition Height="Auto"/>
+                <!-- Title -->
+                <RowDefinition Height="Auto"/>
+                <!-- Card -->
+            </Grid.RowDefinitions>
+
+            <!-- ICONS -->
+            <StackPanel Orientation="Horizontal"
+                 HorizontalAlignment="Center"
+                 Margin="0,6,0,10"
+                 Grid.Row="0">
+
+                <Image Source="/Images/ClashOfClansLogo.png"
+                Width="60" Height="45" Margin="10,0"/>
+
+                <Image Source="/Images/ClanWarLogo.jpg"
+                Width="60" Height="45" Margin="10,0"/>
+
+                <Image Source="/Images/barbarian3.png"
+                Width="60" Height="45" Margin="10,0"/>
+            </StackPanel>
+
+            <!-- TITLE -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,20">
+
+                <TextBlock Text="Army Optimizer"
+                    FontSize="36"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Plan your perfect attack strategy"
+                    FontSize="14"
+                    Foreground="#9CA3AF"
+                    HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal"
+                  HorizontalAlignment="Center"
+                  Margin="0,0,0,10"
+                  Grid.Row="0">
+
+                    <Border Background="#111C2D"
+                     CornerRadius="25"
+                     Padding="5"
+                     Margin="0,20,0,0"
+                     HorizontalAlignment="Center">
+
+                        <Grid Width="320" Height="45">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- LOGIN BUTTON -->
+                            <Button x:Name="LoginToggle"
+                             Content="Log In"
+                             Grid.Column="0"
+                             Background="#F59E0B"
+                             Foreground="Black"
+                             FontWeight="Bold"
+                             BorderThickness="0"
+                            Command="{Binding DataContext.ShowLoginCommand, 
+                                RelativeSource={RelativeSource AncestorType=ContentControl}}" >
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                       CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <!-- REGISTER BUTTON -->
+                            <Button x:Name="RegisterToggle"
+                             Content="Register"
+                             Grid.Column="1"
+                             Background="Transparent"
+                             Foreground="#9CA3AF"
+                             FontWeight="Bold"
+                             BorderThickness="0"
+                             Command="{Binding DataContext.ShowRegisterCommand, 
+                             RelativeSource={RelativeSource AncestorType=Window}}">
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                       CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+
+            <!-- LOGIN FORM -->
+            <Border x:Name="LoginForm"
+             Grid.Row="2"
+             Background="#111C2D"
+             Padding="30"
+             CornerRadius="15">
+
+                <StackPanel>
+
+                    <TextBlock Text="Welcome back, Chief!"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Enter your details to continue"
+                        FontSize="12"
+                        Foreground="#9CA3AF"
+                        HorizontalAlignment="Center"
+                        Margin="0,5,0,20"/>
+
+
+                    <TextBlock Text="Username"
+                        Foreground="White"
+                        Margin="0,10,0,5"/>
+
+                    <TextBox Height="40"
+                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                     Background="#0B1622"
+                     Foreground="White"
+                     BorderBrush="#1F2937"
+                     BorderThickness="1"
+                     Padding="10"/>
+
+
+                    <TextBlock Text="Password"
+                        Foreground="White"  
+                        Margin="0,15,0,5"/>
+
+                    <PasswordBox x:Name="PasswordBox"
+                         Height="40"
+                         Background="#0B1622"
+                         BorderBrush="#1F2937"
+                         Foreground="White"
+                         BorderThickness="1"
+                         Padding="10"
+                         PasswordChanged="PasswordChanged"/>
+
+                    <Button Content="Enter Battle"
+                        Height="45"
+                        Margin="0,25,0,0"
+                        Background="#F59E0B"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Command="{Binding LoginCommand}"/>  
+
+                    <!-- Switch to Register -->
+                    <TextBlock HorizontalAlignment="Center"
+                       Margin="0,20,0,0"
+                       Foreground="#9CA3AF"
+                       Cursor="Hand"> 
+                        
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick"
+                      Command="{Binding GoToRegisterCommand}"/>
+                        </TextBlock.InputBindings>
+
+                    <Run Text="Don't have an account? "/>
+                        <Run Text="Register"
+                             Foreground="#F59E0B"
+                             FontWeight="Bold"/>
+
+                    </TextBlock>
+
+                </StackPanel>
+            </Border>
+
+            <!-- REGISTER FORM -->
+            <Border x:Name="RegisterForm"
+             Grid.Row="2"
+             Background="#111C2D"
+             Padding="30"
+             CornerRadius="15"
+             Visibility="Collapsed">
+
+                <StackPanel>
+
+                    <TextBlock Text="Join the Clan!"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Create your account to get started"
+                        FontSize="12"
+                        Foreground="#9CA3AF"
+                        HorizontalAlignment="Center"
+                        Margin="0,5,0,20"/>
+
+                    <TextBlock Text="Username"
+                        Foreground="White"
+                        Margin="0,10,0,5"/>
+
+                    <TextBox Height="40"
+                      Background="#0B1622"
+                      BorderBrush="#1F2937"
+                      BorderThickness="1"
+                      Padding="10"/>
+
+                    <TextBlock Text="Email"
+                        Foreground="White"
+                        Margin="0,15,0,5"/>
+
+                    <TextBox Height="40"
+                      Background="#0B1622"
+                      BorderBrush="#1F2937"
+                      BorderThickness="1"
+                      Padding="10"/>
+
+                    <TextBlock Text="Password"
+                        Foreground="White"
+                        Margin="0,15,0,5"/>
+
+                    <PasswordBox Height="40"
+                          Background="#0B1622"
+                          BorderBrush="#1F2937"
+                          BorderThickness="1"
+                          Padding="10"/>
+
+                    <TextBlock Text="Confirm Password"
+                        Foreground="White"
+                        Margin="0,15,0,5"/>
+
+                    <PasswordBox Height="40"
+                          Background="#0B1622"
+                          BorderBrush="#1F2937"
+                          BorderThickness="1"
+                          Padding="10"/>
+
+                    <Button Content="Create Account"
+                     Height="45"
+                     Margin="0,25,0,0"
+                     Background="#F59E0B"
+                     FontWeight="Bold"
+                     BorderThickness="0"/>
+
+                    <!-- Switch to Login -->
+                    <TextBlock HorizontalAlignment="Center"
+                        Margin="0,20,0,0"
+                        Foreground="#9CA3AF"
+                        Cursor="Hand"
+                        >
+
+                 <Run Text="Already have an account? "/>
+                 <Run Text="Log In"
+                      Foreground="#F59E0B"
+                      FontWeight="Bold"/>
+                    </TextBlock>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

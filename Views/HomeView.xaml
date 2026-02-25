@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="ArmyOptimizer.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0B1622"
+             >
+
+    <Grid>
+
+        <!-- ================= NAVBAR ================= -->
+        <Border Background="#111C2D"
+                Height="60"
+                VerticalAlignment="Top">
+
+            <Grid Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left side -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <Image Source="/Images/ArmyOptimizerLogo.png"
+                         Width="40" Height="35" Margin="0,0,10,0" />
+
+                    <TextBlock Text="Army Optimizer"
+                               Foreground="White"
+                               FontSize="18"
+                               FontWeight="Bold"/>
+                </StackPanel>
+
+                <!-- Right side -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <Button Content="⎋"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="#ff0000"
+                        FontSize="20"
+                        Margin="0,0,5,0"
+                        Command="{Binding LogoutCommand}"/> 
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <Grid Margin="0,80,0,0">
+
+            <Grid HorizontalAlignment="Center"
+                  MaxWidth="700">
+                    
+                    
+                
+                
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,30">
+
+                                    <TextBlock Text="{Binding WelcomeText}"
+                           Foreground="#e1e4e8"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                                    <TextBlock Text=" 👋"
+                           Foreground="#F59E0B"
+                           FontSize="20"
+                           VerticalAlignment="Center"/>
+                    </StackPanel>
+
+
+
+
+
+                    <!-- Optimize Card -->
+                    <Border Background="#111C2D"
+                            Padding="40"
+                            CornerRadius="15"
+                            Margin="0,0,0,40"
+                            Cursor="Hand">
+
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#111C2D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#505b6e"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <StackPanel HorizontalAlignment="Center">
+
+                            <Border Background="#2C1F0E"
+                                    Width="60"
+                                    Height="60"
+                                    CornerRadius="12"
+                                    Margin="0,0,0,20">
+
+                                <TextBlock Text="+"
+                                           Foreground="#F59E0B"
+                                           FontSize="30"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            
+
+                            <TextBlock Text="Optimize a New Army"
+                                       Foreground="White"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Select your Town Hall and build the perfect attack"
+                                       Foreground="#9CA3AF"
+                                       FontSize="13"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Recent Armies Title -->
+                    <TextBlock Text="RECENT ARMIES"
+                               Foreground="#9CA3AF"
+                               FontWeight="Bold"
+                               Margin="0,0,0,15"/>
+
+                    <ItemsControl ItemsSource="{Binding Armies}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border Background="#111C2D"
+                                    Padding="25"
+                                    CornerRadius="15"
+                                    Margin="0,0,0,15"
+                                    Cursor="Hand">
+
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                            Command="{Binding DataContext.OpenArmyCommand,
+                                                      RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}" /> 
+                                    </Border.InputBindings>
+
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#111C2D"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#505b6e"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+
+                                    <StackPanel>
+
+                                        <!-- Header -->
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="🏰"
+                                               Foreground="#F59E0B"
+                                               Margin="0,0,10,0"/>
+
+                                            <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontWeight="Bold"
+                                               FontSize="15"/>
+
+                                            <TextBlock Text="  TH"
+                                               Foreground="#9CA3AF"
+                                               Margin="10,0,0,0"/>
+
+                                            <TextBlock Text="{Binding TownHall}"
+                                                Foreground="#9CA3AF"/>
+                                        </StackPanel>
+
+                                        <TextBlock Text="{Binding Description}"
+                                           Foreground="#9CA3AF"
+                                           Margin="0,10,0,0"
+                                           TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="{Binding CreatedAt,
+                                          StringFormat='{}{0:MMM dd yyyy}'}"
+                                           Foreground="#6B7280"
+                                           FontSize="11"
+                                           Margin="0,10,0,0"/>
+
+                                    </StackPanel>
+
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>
