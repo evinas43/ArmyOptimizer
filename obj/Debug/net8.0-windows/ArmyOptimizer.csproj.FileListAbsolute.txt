@@ -37,3 +37,8 @@ C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\ref\ArmyOptimizer.dll
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\ArmyDetailView.baml
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\ArmyDetailView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\ArmyOptimizer.sourcelink.json
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\OptimizeArmyView.baml
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\OptimizeArmyView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\SaveArmyView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\SaveArmyView.baml

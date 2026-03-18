@@ -33,21 +33,43 @@ namespace ArmyOptimizer.ViewModels
                 return;
             }
 
-            var token = await _auth.LoginAsync(Username, Password);
-
-            if (token == null)
+            try
             {
-                MessageBox.Show("Invalid credentials");
-                return;
+                IsLoading = true;  
+
+                var token = await _auth.LoginAsync(Username, Password);
+
+                if (token == null)
+                {
+                    MessageBox.Show("Invalid credentials");
+                    return;
+                }
+
+                SessionUser.Username = Username;
+                SessionUser.token = token;
+
+                HttpService.SetToken(token);
+
+                _navigation.CurrentView = new HomeVM(_navigation);
             }
+            finally
+            {
+                IsLoading = false;  
+            }
+        }
 
-            SessionUser.Username = Username;
-            SessionUser.token = token;
-
-            HttpService.SetToken(token);
-
-            _navigation.CurrentView = new HomeVM(_navigation);
+        // spinner
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
         }
 
     }
+
 }

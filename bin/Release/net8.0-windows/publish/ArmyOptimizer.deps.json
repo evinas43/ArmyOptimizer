@@ -1,0 +1,75 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ArmyOptimizer/1.0.0": {
+        "dependencies": {
+          "MaterialDesignThemes": "5.3.1-ci1271"
+        },
+        "runtime": {
+          "ArmyOptimizer.dll": {}
+        }
+      },
+      "MaterialDesignColors/5.3.1-ci1271": {
+        "runtime": {
+          "lib/net8.0-windows7.0/MaterialDesignColors.dll": {
+            "assemblyVersion": "5.3.1.0",
+            "fileVersion": "5.3.1.0"
+          }
+        }
+      },
+      "MaterialDesignThemes/5.3.1-ci1271": {
+        "dependencies": {
+          "MaterialDesignColors": "5.3.1-ci1271",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/MaterialDesignThemes.Wpf.dll": {
+            "assemblyVersion": "5.3.1.0",
+            "fileVersion": "5.3.1.0"
+          }
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+        "runtime": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.77.27830"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArmyOptimizer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MaterialDesignColors/5.3.1-ci1271": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r15eOTJ2VhfwwkjICSRnl0xbGiRHZTfnd4a2JiBADbMDL/X1ab/YiJmjakvy60i3vy2flw3m5/ZNeoiKc0Hv3Q==",
+      "path": "materialdesigncolors/5.3.1-ci1271",
+      "hashPath": "materialdesigncolors.5.3.1-ci1271.nupkg.sha512"
+    },
+    "MaterialDesignThemes/5.3.1-ci1271": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XRswS+3DEjdV7jH9AJ2O+rw4L4NQrqOKuyU/ZEm4BrPYoOwYUsu18zlDxlmbbBCgEHvvni88xfyj8Stn+fbiLg==",
+      "path": "materialdesignthemes/5.3.1-ci1271",
+      "hashPath": "materialdesignthemes.5.3.1-ci1271.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MCu674ZETgU18EbxfwIlRpUPJ02YbZenLsMCXTkpeA7KUBpXfFaOUDlEO+7UWu5AFnUoydg+aQENJkuaZPheMQ==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.77",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
+    }
+  }
+}

@@ -75,7 +75,8 @@
                              FontWeight="Bold"
                              BorderThickness="0"
                             Command="{Binding DataContext.ShowLoginCommand, 
-                                RelativeSource={RelativeSource AncestorType=ContentControl}}" >
+                                RelativeSource={RelativeSource AncestorType=ContentControl}}"
+                                    >
 
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
@@ -277,6 +278,86 @@
 
                 </StackPanel>
             </Border>
+        </Grid>
+        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+            Width="120" Height="120">
+
+            <TextBlock Text="⚔️"
+               FontSize="80"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+
+                <TextBlock.Foreground>
+                    <LinearGradientBrush x:Name="SwordGradient"
+                                 StartPoint="0,0"
+                                 EndPoint="1,0">
+
+                        <!-- base sword -->
+                        <GradientStop Color="#101010" Offset="0"/>
+                        <GradientStop Color="#101010" Offset="0.30"/>
+
+                        <!-- glow start -->
+                        <GradientStop x:Name="GlowStart" Color="#F59E0B" Offset="0.40"/>
+
+                        <!-- strong bright orange -->
+                        <GradientStop x:Name="GlowCenter1" Color="#F59E0B" Offset="0.48"/>
+
+                        <!-- strongest highlight -->
+                        <GradientStop x:Name="GlowCenter2" Color="#F59E0B" Offset="0.50"/>
+
+                        <!-- fade out -->
+                        <GradientStop x:Name="GlowCenter3" Color="#e39005" Offset="0.52"/>
+
+                        <GradientStop x:Name="GlowEnd" Color="#b87300" Offset="0.60"/>
+
+                        <GradientStop Color="#101010" Offset="0.70"/>
+                        <GradientStop Color="#101010" Offset="1"/>
+
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+
+                                <DoubleAnimation Storyboard.TargetName="GlowStart"
+                                         Storyboard.TargetProperty="Offset"
+                                         From="-0.32"
+                                         To="1.54"
+                                         Duration="0:0:2.4"/>
+
+                                <DoubleAnimation Storyboard.TargetName="GlowCenter1"
+                                         Storyboard.TargetProperty="Offset"
+                                         From="-0.32"
+                                         To="1.56"
+                                         Duration="0:0:2.4"/>
+
+                                <DoubleAnimation Storyboard.TargetName="GlowCenter2"
+                                         Storyboard.TargetProperty="Offset"
+                                         From="-0.32"
+                                         To="1.58"
+                                         Duration="0:0:2.4"/>
+
+                                <DoubleAnimation Storyboard.TargetName="GlowCenter3"
+                                         Storyboard.TargetProperty="Offset"
+                                         From="-0.32"
+                                         To="1.59"
+                                         Duration="0:0:2.4"/>
+
+                                <DoubleAnimation Storyboard.TargetName="GlowEnd"
+                                         Storyboard.TargetProperty="Offset"
+                                         From="-0.32"
+                                         To="1.63"
+                                         Duration="0:0:2.4"/>
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+
+            </TextBlock>
+
         </Grid>
     </Grid>
 </UserControl>

@@ -34,5 +34,23 @@ namespace ArmyOptimizer.Services
 
             return await response.Content.ReadFromJsonAsync<Army>();
         }
+
+        public async Task<Army?> SaveUserOptimizedArmy(object army)
+        {
+            MessageBox.Show(_client.BaseAddress + "api/Army/save");
+
+
+            var response = await _client.PostAsJsonAsync("api/Army/save", army);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show($"ERROR API:\n{content}");
+                return null;
+            }
+
+            return await response.Content.ReadFromJsonAsync<Army>();
+        }
     }
 }

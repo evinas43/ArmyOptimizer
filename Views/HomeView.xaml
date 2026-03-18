@@ -98,30 +98,46 @@
                         <StackPanel HorizontalAlignment="Center">
 
                             <Border Background="#2C1F0E"
-                                    Width="60"
-                                    Height="60"
-                                    CornerRadius="12"
-                                    Margin="0,0,0,20">
+                                Width="73"
+                                Height="43"
+                                CornerRadius="14"
+                                Margin="0,10,0,20">
 
-                                <TextBlock Text="+"
-                                           Foreground="#F59E0B"
-                                           FontSize="30"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
+                                <Button 
+                                    Content="+"
+                                    FontSize="22"
+                                    Foreground="#F59E0B"
+                                    Background="#80C77D00"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Command="{Binding OptimizeArmyCommand}"
+                                    Padding="0">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="10">
+                                                <ContentPresenter 
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </Border>
-                            
+
 
                             <TextBlock Text="Optimize a New Army"
-                                       Foreground="White"
-                                       FontSize="20"
-                                       FontWeight="Bold"
-                                       HorizontalAlignment="Center"/>
+                                           Foreground="White"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
 
                             <TextBlock Text="Select your Town Hall and build the perfect attack"
-                                       Foreground="#9CA3AF"
-                                       FontSize="13"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,8,0,0"/>
+                                           Foreground="#9CA3AF"
+                                           FontSize="13"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,8,0,0"/>
                         </StackPanel>
                     </Border>
 

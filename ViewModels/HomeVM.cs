@@ -15,6 +15,8 @@ namespace ArmyOptimizer.ViewModels
         public string WelcomeText { get; }
 
         public RelayCommand LogoutCommand { get; }
+        
+        public RelayCommand OptimizeArmyCommand { get; }
         public RelayCommand<ArmySummary> OpenArmyCommand { get; }
 
         public HomeVM(NavigationVM navigation)
@@ -25,6 +27,11 @@ namespace ArmyOptimizer.ViewModels
             WelcomeText = $"Welcome back, {SessionUser.Username}";
 
             LogoutCommand = new RelayCommand(_ => Logout());
+
+            OptimizeArmyCommand = new RelayCommand(_=>
+            {
+                _navigation.CurrentView = new OptimizeArmyVM(_navigation);
+            });
 
             OpenArmyCommand = new RelayCommand<ArmySummary>(army =>
             {
@@ -41,6 +48,8 @@ namespace ArmyOptimizer.ViewModels
 
             _navigation.CurrentView = new LoginVM(_navigation);
         }
+
+
 
         private async void LoadArmies()
         {

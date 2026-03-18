@@ -1,0 +1,9 @@
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.exe
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.dll
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.deps.json
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.runtimeconfig.json
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.dll.config
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\ArmyOptimizer.pdb
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\MaterialDesignColors.dll
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\MaterialDesignThemes.Wpf.dll
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\app.publish\Microsoft.Xaml.Behaviors.dll

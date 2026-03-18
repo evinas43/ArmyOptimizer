@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ArmyOptimizer.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Launcher.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Launcher.exe" size="16384">
+      <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>BflvscqSvWO6V0Lo08IoBMqAfo4ImzbmtwTZO8UAJmc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ArmyOptimizer.deps.json" size="2447">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WxLKFJhxglA2BXfcZ3ekUl9ElTw7pRHnQ9KI4Zcasto=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ArmyOptimizer.dll" size="1272832">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>u/QKp/2YqPMP9YacpcHyOj6dpwd92iRYJFrb7eJ/zeg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ArmyOptimizer.dll.config" size="294">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>QVCkpdO6CAbtGHyeIjnsf5AMsbIygCB5boQ0pe0zy4U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ArmyOptimizer.exe" size="151040">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1GbA4VgWT0nJua6JywiD8jURNEAeJq2MPjdY+kdjoUQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="ArmyOptimizer.runtimeconfig.json" size="515">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ia0epcnCC2smZUfvJ8CuOEDKtWQtPCrt8GtwJiRWcd0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MaterialDesignColors.dll" size="320512">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>lKSXVIZt4z/aZpazZrcPm2vYBhrWkyvgOJ5rv/wfqi0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MaterialDesignThemes.Wpf.dll" size="9973760">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KfBRKDOJkVmufYo/0c/pklkCDQ9hhzJrEEubGOZDVow=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Microsoft.Xaml.Behaviors.dll" size="146864">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rPJmTTX0MqueoAMEDlFUrou0Co8H0+6+5wk+l/RKluo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Noto\NotoSans-Bold.ttf" size="398652">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+aa9SJ31YPepJbQ9W0jUU2+iRYkzLlNwK2P8AHKJj4Y=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Noto\NotoSans-BoldItalic.ttf" size="285736">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qrsG6O91G9BTN7Nuh6+WM0/aG8W4ZxfuAj8xdcOkybU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Noto\NotoSans-Italic.ttf" size="274624">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Xmatbro/brLl3WkEXfy2dtSJvyvvkhhuSgjhtvd9ObY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Noto\NotoSans-Regular.ttf" size="398968">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ld6u0H9kg/eDGyP6oyz4WgTDQG60uyklUwiUgFoF1Ps=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Black.ttf" size="163488">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>j/BMblsT67pXRTmRiBPEbQ/sFwhJpH5owdcqrkafpf8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-BlackItalic.ttf" size="165444">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>m+bUANonDywQTUBTnz8wM44h7nvMEBKVNwZVHBBBVoY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Bold.ttf" size="162464">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>7yqw5ALVy53ok+JjosROV/V/7Dl0sNmBv+hN7D2ug6E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-BoldItalic.ttf" size="163644">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MVd3P/gcTrCIOTbicFTAXtNCvu74OkMKHZmCE4ItPaE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-Bold.ttf" size="161748">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AxImllAxbgg7DG0Aba7wn7tWttFy5cZcMeI/HCXc0ow=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-BoldItalic.ttf" size="167212">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>GyoyWplWwWkpmn/IBaC5oiTt7DVdHYvt8vo9DUoZCyk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-Italic.ttf" size="166136">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>9UYhmCbz6589aQ7L5PHVWeYym5zMo+NOm/RA0yeCe/U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-Light.ttf" size="160748">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>PI3AqxGDNnxWKJlPCJaVip9C/Vj01NLDsOY/+jvq6+E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-LightItalic.ttf" size="167432">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jODH7sRNURQSuIPbPt7tLfUALqdhGonvpsA/uluqZbs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\RobotoCondensed-Regular.ttf" size="161524">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1cvhDPuVTm1YBSW9BVNrIUR84pq4qE4h2opYtYgZAyY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Italic.ttf" size="161484">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>BE0uPjoX2kh9pG/DjL0Kcp3rmvBE5WP2b4zbxXQhJ34=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Light.ttf" size="162420">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>5+plPd7C0qdNDcv/CZwAnMdGnsMjpQyJopFc5EykwLQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-LightItalic.ttf" size="166492">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>V1d6irUIYpXRAmsdU5cvoKL30XcKKG04vmK61MfN+80=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Medium.ttf" size="162588">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hVkTLImtUdiiulsXGIekSnupN3biBfVTVz3iKOZLRfg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-MediumItalic.ttf" size="165636">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>kaHBFmCSnoz7cm15JKUbQELA537ExbkLkv5eRdJt51k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Regular.ttf" size="162876">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8OWiG/XJXkwbzivpijZW68xtQqIfQcTj6/ad2BVwLlQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-Thin.ttf" size="163132">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>O3pmkdl46BrfySkTzfrliXMVGYWwct8qGxGeqTe6kX4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Roboto\Roboto-ThinItalic.ttf" size="168276">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>UgeeT2djXFqb/GWHPOttdcdzslq069y0I/bnCqA2/Zk=</dsig:DigestValue>
+    </hash>
+  </file>
+</asmv1:assembly>
