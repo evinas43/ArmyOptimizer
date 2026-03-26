@@ -47,7 +47,7 @@ namespace ArmyOptimizer.ViewModels
 
             if (!success)
             {
-                MessageBox.Show("Registration failed");
+                MessageBox.Show("Registration failed (username may already exist)");
                 return;
             }
 

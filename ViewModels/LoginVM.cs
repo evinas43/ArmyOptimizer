@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.Text.Json;
+using System.Windows;
 using ArmyOptimizer.Models;
 using ArmyOptimizer.Services;
 using ArmyOptimizer.Utilities;
+using ArmyOptimizer.Views;
 
 namespace ArmyOptimizer.ViewModels
 {
@@ -9,11 +11,14 @@ namespace ArmyOptimizer.ViewModels
     {
         private readonly NavigationVM _navigation;
         private readonly AuthService _auth;
+        private readonly UserService _userService;
+        private readonly ToastService _toastService;
 
         public LoginVM(NavigationVM navigation)
         {
             _navigation = navigation;
             _auth = new AuthService(HttpService.Client);
+            _userService = new UserService(HttpService.Client);
 
             LoginCommand = new RelayCommand(async _ => await Login());
         }
@@ -29,7 +34,7 @@ namespace ArmyOptimizer.ViewModels
             if (string.IsNullOrWhiteSpace(Username) ||
                 string.IsNullOrWhiteSpace(Password))
             {
-                MessageBox.Show("Fill all fields");
+                ToastService.Instance.Show("Fill all fields", "warning");
                 return;
             }
 
@@ -41,7 +46,7 @@ namespace ArmyOptimizer.ViewModels
 
                 if (token == null)
                 {
-                    MessageBox.Show("Invalid credentials");
+                    ToastService.Instance.Show("Invalid credentials", "error");
                     return;
                 }
 
@@ -50,6 +55,14 @@ namespace ArmyOptimizer.ViewModels
 
                 HttpService.SetToken(token);
 
+                var me = await _userService.ME();
+
+                if (me is JsonElement json && json.TryGetProperty("role", out var roleProp))
+                {
+                    SessionUser.Role = roleProp.GetString();
+                }
+
+                // navegar al home
                 _navigation.CurrentView = new HomeVM(_navigation);
             }
             finally

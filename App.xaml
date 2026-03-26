@@ -33,6 +33,9 @@
             <views:SaveArmyView/>
         </DataTemplate>
         
+        <DataTemplate DataType="{x:Type vm:CompleteArmyListVM}">
+            <views:CompleteArmyListView/>
+        </DataTemplate>
         
         
         <utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

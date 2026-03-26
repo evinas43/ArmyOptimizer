@@ -41,7 +41,7 @@ using ArmyOptimizer.Utilities;
             public bool IsSpellFull => CurrentSpellHousing >= MaxSpellHousing;
             public bool IsSiegeFull => CurrentSiegeMachineHousing >= MaxSiegeMachineHousing;
             //------------------------------------------------------------------------------
-        
+
 
             
             public RelayCommand<int> SelectTownHallCommand { get; }
@@ -291,9 +291,12 @@ using ArmyOptimizer.Utilities;
             public ObservableCollection<SelectableSpell> DarkSpells { get; set; }
             public ObservableCollection<SelectableSiegeMachine> SiegeMachines { get; set; }
 
+        //declaration of the townhall colection :
+        public ObservableCollection<TownHallOption> TownHalls { get; set; }
+
         //summary properties 
-            //heroes
-            public IEnumerable<SelectableHero> SelectedHeroes =>Heroes.Where(h => h.IsSelected);
+        //heroes
+        public IEnumerable<SelectableHero> SelectedHeroes =>Heroes.Where(h => h.IsSelected);
 
         //Troops,DarkTroops,SuperTroops
             public IEnumerable<SelectableTroop> SelectedElixirTroops =>ElixirTroops.Where(t => t.Quantity > 0);
@@ -321,20 +324,25 @@ using ArmyOptimizer.Utilities;
                 _navigation = navigation;
 
                 _optimizer = new AiOptimizerService(HttpService.Client);
+                
+              
 
-                OptimizeCommand = new RelayCommand(async _ => await Optimize());
+            OptimizeCommand = new RelayCommand(async _ => await Optimize());
 
             // 1 
             ArmyToOptimize = new ArmyToOptimize();
 
-                // 2 Initialize Data First
+                // 2 Initialize Data First 
                 InitializeCollections();
-
+                
                 // 3 Initialize The Quantity selector
                 InitializeTroopCommands();
 
-                // 4 Commands
-                BackCommand = new RelayCommand(_ =>
+                // 3.5 Initialize the images 
+                _ = LoadImagesAsync();
+
+            // 4 Commands
+            BackCommand = new RelayCommand(_ =>
                     _navigation.CurrentView = new HomeVM(_navigation));
 
                 PreviousStepCommand = new RelayCommand(_ =>
@@ -450,107 +458,189 @@ using ArmyOptimizer.Utilities;
             private void InitializeCollections()
             {
 
-                Heroes = new ObservableCollection<SelectableHero>
+            TownHalls = new ObservableCollection<TownHallOption>
+            {
+                new() { Level = 7, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall7_ll63f5.png" },
+                new() { Level = 8, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall8_iaxn0n.png" },
+                new() { Level = 9, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall9_zstrie.png" },
+                new() { Level = 10, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall10_eq4hio.png" },
+                new() { Level = 11, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall11_vqtc8g.png" },
+                new() { Level = 12, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town_Hall12-5_fmb4yw.png" },
+                new() { Level = 13, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town-hall-13-5_syw8cr.png" },
+                new() { Level = 14, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall14-5_qpsnsf.png" },
+                new() { Level = 15, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall15-5_zbyib8.png" },
+                new() { Level = 16, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall16_loputx.png" },
+                new() { Level = 17, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall17-5_z0prjh.png" },
+                new() { Level = 18, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall18_e9l7v3.png" }
+            };
+
+            OnPropertyChanged(nameof(TownHalls));
+
+            Heroes = new ObservableCollection<SelectableHero>
+            {
+                new SelectableHero
                 {
-                    new SelectableHero { Name = "Barbarian King" },
-                    new SelectableHero { Name = "Archer Queen" },
-                    new SelectableHero { Name = "Minion Prince" },
-                    new SelectableHero { Name = "Grand Warden" },
-                    new SelectableHero { Name = "Royal Champion" }
-                };
-                ElixirTroops = new ObservableCollection<SelectableTroop>
+                    Name = "Barbarian King",
+                    ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375917/Avatar_Hero_Barbarian_King_s87uct.png"
+                },
+                new SelectableHero
                 {
-                    new SelectableTroop { Name="Barbarian", HousingSpace=1 },
-                    new SelectableTroop { Name="Archer", HousingSpace=1 },
-                    new SelectableTroop { Name="Giant", HousingSpace=5 },
-                    new SelectableTroop { Name="Goblin", HousingSpace=1 },
-                    new SelectableTroop { Name="Wall Breaker", HousingSpace=2 },
-                    new SelectableTroop { Name="Balloon", HousingSpace=5 },
-                    new SelectableTroop { Name="Wizard", HousingSpace=4 },
-                    new SelectableTroop { Name="Healer", HousingSpace=14 },
-                    new SelectableTroop { Name="Dragon", HousingSpace=20 },
-                    new SelectableTroop { Name="P.E.K.K.A", HousingSpace=25 },
-                    new SelectableTroop { Name="Baby Dragon", HousingSpace=10 },
-                    new SelectableTroop { Name="Miner", HousingSpace=6 },
-                    new SelectableTroop { Name="Electro Dragon", HousingSpace=30 },
-                    new SelectableTroop { Name="Yeti", HousingSpace=18 },
-                    new SelectableTroop { Name="Dragon Rider", HousingSpace=25 },
-                    new SelectableTroop { Name="Electro Titan", HousingSpace=32 },
-                    new SelectableTroop { Name="Root Rider", HousingSpace=20 },
-                    new SelectableTroop { Name="Thrower", HousingSpace=16 },
-                    new SelectableTroop { Name="Meteor Golem", HousingSpace=40 }
+                    Name = "Archer Queen",
+                    ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375916/Avatar_Hero_Archer_Queen_peli8n.png"
+                },
+                new SelectableHero
+                {
+                    Name = "Grand Warden",
+                    ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375916/Avatar_Hero_Grand_Warden_quwu8o.png"
+                },
+                new SelectableHero
+                {
+                    Name = "Minion Prince",
+                    ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375916/Avatar_Hero_Minion_Prince_b9nkfj.png"
+                },
+                new SelectableHero
+                {
+                    Name = "Royal Champion",
+                    ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375917/Avatar_Hero_Royal_Champion_iu0z2e.png"
+                }
+            };
+            ElixirTroops = new ObservableCollection<SelectableTroop>
+            {
+                new SelectableTroop { Name="Barbarian", HousingSpace=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376169/Avatar_Barbarian_lwtrbq.png" },
+                new SelectableTroop { Name="Archer", HousingSpace=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376167/Avatar_Archer_p8fvxs.png" },
+                new SelectableTroop { Name="Giant", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376170/Avatar_Giant_ddigmo.png" },
+                new SelectableTroop { Name="Goblin", HousingSpace=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376168/Avatar_Goblin_iiwpog.png" },
+                new SelectableTroop { Name="Wall Breaker", HousingSpace=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376174/Avatar_Wall_Breaker_z7i4jg.png" },
+                new SelectableTroop { Name="Balloon", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376166/Avatar_Balloon_gxewyx.png" },
+                new SelectableTroop { Name="Wizard", HousingSpace=4, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376175/Avatar_Wizard_pnwv2h.png" },
+                new SelectableTroop { Name="Healer", HousingSpace=14, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376166/Avatar_Healer_ahurvo.png" },
+                new SelectableTroop { Name="Dragon", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376166/Avatar_Dragon_rgvc1t.png" },
+                new SelectableTroop { Name="P.E.K.K.A", HousingSpace=25, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376173/Avatar_P.E.K.K.A_uiwpd6.png" },
+                new SelectableTroop { Name="Baby Dragon", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376171/Avatar_Baby_Dragon_lano31.png" },
+                new SelectableTroop { Name="Miner", HousingSpace=6, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376172/Avatar_Miner_u50jh2.png" },
+                new SelectableTroop { Name="Electro Dragon", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376168/Avatar_Electro_Dragon_pk9esh.png" },
+                new SelectableTroop { Name="Yeti", HousingSpace=18, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376175/Avatar_Yeti_qmbs18.png" },
+                new SelectableTroop { Name="Dragon Rider", HousingSpace=25, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376170/Avatar_Dragon_Rider_hva940.png" },
+                new SelectableTroop { Name="Electro Titan", HousingSpace=32, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376170/Avatar_Electro_Titan_lgs4ee.png" },
+                new SelectableTroop { Name="Root Rider", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376173/Avatar_Root_Rider_wynbsd.png" },
+                new SelectableTroop { Name="Thrower", HousingSpace=16, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376174/Avatar_Thrower_ughnfy.png" },
+                new SelectableTroop { Name="Meteor Golem", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376172/Avatar_Meteor_Golem_ecr7w8.png" }
+            };
+
+            DarkTroops = new ObservableCollection<SelectableTroop>
+            {
+                new SelectableTroop { Name="Minion", HousingSpace=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376407/Avatar_Minion_miyqch.png" },
+                new SelectableTroop { Name="Hog Rider", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376414/Avatar_Hog_Rider_gnx8mx.png" },
+                new SelectableTroop { Name="Valkyrie", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376415/Avatar_Valkyrie_xfxukv.png" },
+                new SelectableTroop { Name="Golem", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376413/Avatar_Golem_vef0wn.png" },
+                new SelectableTroop { Name="Witch", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376411/Avatar_Witch_mtqi6z.png" },
+                new SelectableTroop { Name="Lava Hound", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376410/Avatar_Lava_Hound_bok88r.png" },
+                new SelectableTroop { Name="Bowler", HousingSpace=6, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376407/Avatar_Bowler_inluv7.png" },
+                new SelectableTroop { Name="Ice Golem", HousingSpace=15, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376413/Avatar_Ice_Golem_gdaagq.png" },
+                new SelectableTroop { Name="Headhunter", HousingSpace=6, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376411/Avatar_Headhunter_mlfchb.png" },
+                new SelectableTroop { Name="Apprentice Warden", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376406/Avatar_Apprentice_Warden_skdqyq.png" },
+                new SelectableTroop { Name="Druid", HousingSpace=16, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376416/Avatar_Druid_kxagut.png" },
+                new SelectableTroop { Name="Furnace", HousingSpace=18, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376409/Avatar_Furnace_jvxkus.png" }
+            };
+
+            SuperTroops = new ObservableCollection<SelectableTroop>
+            {
+                new SelectableTroop { Name="Super Barbarian", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376772/Avatar_Super_Barbarian_fphb14.png" },
+                new SelectableTroop { Name="Super Archer", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376771/Avatar_Super_Archer_zt7amw.png" },
+                new SelectableTroop { Name="Super Giant", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376777/Avatar_Super_Giant_wetksa.png" },
+                new SelectableTroop { Name="Sneaky Goblin", HousingSpace=3, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376768/Avatar_Sneaky_Goblin_g4kro0.png" },
+                new SelectableTroop { Name="Super Wall Breaker", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376776/Avatar_Super_Wall_Breaker_swt7rd.png" },
+                new SelectableTroop { Name="Rocket Balloon", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376773/Avatar_Rocket_Balloon_try2b2.png" },
+                new SelectableTroop { Name="Super Wizard", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376782/Avatar_Super_Wizard_i32ge7.png" },
+                new SelectableTroop { Name="Super Dragon", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376775/Avatar_Super_Dragon_asqh6m.png" },
+                new SelectableTroop { Name="Inferno Dragon", HousingSpace=15, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376769/Avatar_Inferno_Dragon_frhlmg.png" },
+                new SelectableTroop { Name="Super Minion", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376779/Avatar_Super_Minion_x1ipym.png" },
+                new SelectableTroop { Name="Super Valkyrie", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Super_Valkyrie_ngqc64.png" },
+                new SelectableTroop { Name="Super Witch", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376780/Avatar_Super_Witch_mpdgfd.png" },
+                new SelectableTroop { Name="Ice Hound", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Ice_Hound_zs2pne.png" },
+                new SelectableTroop { Name="Super Bowler", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376774/Avatar_Super_Bowler_veuaf3.png" },
+                new SelectableTroop { Name="Super Hog Rider", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376778/Avatar_Super_Hog_Rider_lxpiic.png" }
+            };
+
+
+            ElixirSpells = new ObservableCollection<SelectableSpell>
+            {
+                new SelectableSpell { Name="Lightning Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378218/Lightning_Spell_info_wd7hkz.png" },
+                new SelectableSpell{ Name="Healing Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378209/Healing_Spell_info_kobwfq.png" },
+                new SelectableSpell { Name="Rage Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378209/Rage_Spell_info_cf9p9f.png" },
+                new SelectableSpell { Name="Jump Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378217/Jump_Spell_info_lscait.png" },
+                new SelectableSpell { Name="Freeze Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378213/Freeze_Spell_info_dmplps.png" },
+                new SelectableSpell { Name="Clone Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378215/Clone_Spell_info_n8xesr.png" },
+                new SelectableSpell { Name="Invisibility Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378216/Invisibility_Spell_info_fhqu0g.png" },
+                new SelectableSpell { Name="Recall Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378219/Recall_Spell_info_wzchax.png" },
+                new SelectableSpell { Name="Revive Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378213/Revive_Spell_info_rnvsny.png" },
+                new SelectableSpell { Name="Totem Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378214/Totem_Spell_info_akrugc.png" }
+            };
+
+            DarkSpells = new ObservableCollection<SelectableSpell>
+            {
+                 new SelectableSpell  { Name="Poison Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379040/Poison_Spell_info_hkhqfs.png" },
+                 new SelectableSpell { Name="Earthquake Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379038/Earthquake_Spell_info_b7anqy.png" },
+                 new SelectableSpell { Name="Haste Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379031/Haste_Spell_info_ceyyeo.png" },
+                 new SelectableSpell { Name="Skeleton Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379033/Skeleton_Spell_info_nbn76m.png" },
+                 new SelectableSpell { Name="Bat Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379033/Skeleton_Spell_info_nbn76m.png" }, // ⚠️ cámbialo si tienes el real
+                 new SelectableSpell { Name="Overgrowth Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379036/Overgrowth_Spell_info_pe6duh.png" },
+                 new SelectableSpell { Name="Ice Block Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379034/Ice_Block_Spell_info_dakpyu.png" }
+            };
+
+            SiegeMachines = new ObservableCollection<SelectableSiegeMachine>
+                {
+                    new SelectableSiegeMachine
+                    {
+                        Name="Wall Wrecker",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378760/Avatar_Wall_Wrecker_icdrng.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Battle Blimp",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378758/Avatar_Battle_Blimp_g5wpna.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Stone Slammer",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378757/Avatar_Stone_Slammer_up7cpv.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Siege Barracks",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378761/Avatar_Siege_Barracks_xekb2e.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Log Launcher",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378763/Avatar_Log_Launcher_lmgcyw.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Flame Flinger",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378756/Avatar_Flame_Flinger_uok6nn.png"
+                    },
+
+                    new SelectableSiegeMachine
+                    {
+                        Name="Battle Drill",
+                        MachineHousing=1,
+                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png"
+                    }
                 };
 
-                DarkTroops = new ObservableCollection<SelectableTroop>
-                {
-                    new SelectableTroop { Name="Minion", HousingSpace=2 },
-                    new SelectableTroop { Name="Hog Rider", HousingSpace=5 },
-                    new SelectableTroop { Name="Valkyrie", HousingSpace=8 },
-                    new SelectableTroop { Name="Golem", HousingSpace=30 },
-                    new SelectableTroop { Name="Witch", HousingSpace=12 },
-                    new SelectableTroop { Name="Lava Hound", HousingSpace=30 },
-                    new SelectableTroop { Name="Bowler", HousingSpace=6 },
-                    new SelectableTroop { Name="Ice Golem", HousingSpace=15 },
-                    new SelectableTroop { Name="Headhunter", HousingSpace=6 },
-                    new SelectableTroop { Name="Apprentice Warden", HousingSpace=20 },
-                    new SelectableTroop { Name="Druid", HousingSpace=16 },
-                    new SelectableTroop { Name="Furnace", HousingSpace=18 }
-                };
-
-                SuperTroops = new ObservableCollection<SelectableTroop>
-                {
-                    new SelectableTroop { Name="Super Barbarian", HousingSpace=5 },
-                    new SelectableTroop { Name="Super Archer", HousingSpace=12 },
-                    new SelectableTroop { Name="Super Giant", HousingSpace=10 },
-                    new SelectableTroop { Name="Sneaky Goblin", HousingSpace=3 },
-                    new SelectableTroop { Name="Super Wall Breaker", HousingSpace=8 },
-                    new SelectableTroop { Name="Rocket Balloon", HousingSpace=8 },
-                    new SelectableTroop { Name="Super Wizard", HousingSpace=10 },
-                    new SelectableTroop { Name="Super Dragon", HousingSpace=40 },
-                    new SelectableTroop { Name="Inferno Dragon", HousingSpace=15 },
-                    new SelectableTroop { Name="Super Minion", HousingSpace=12 },
-                    new SelectableTroop { Name="Super Valkyrie", HousingSpace=20 },
-                    new SelectableTroop { Name="Super Witch", HousingSpace=40 },
-                    new SelectableTroop { Name="Ice Hound", HousingSpace=40 },
-                    new SelectableTroop { Name="Super Bowler", HousingSpace=30 },
-                    new SelectableTroop { Name="Super Hog Rider", HousingSpace=12 }
-                };
-
-
-                ElixirSpells = new ObservableCollection<SelectableSpell>
-                {
-                    new SelectableSpell { Name="Lightning Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Healing Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Rage Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Jump Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Freeze Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Clone Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Invisibility Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Recall Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Overgrowth Spell", SpellingHousing = 2 },
-                };
-            
-                DarkSpells = new ObservableCollection<SelectableSpell>
-                {
-                    new SelectableSpell { Name="Poison Spell", SpellingHousing = 1 },
-                    new SelectableSpell { Name="Earthquake Spell", SpellingHousing = 2 },
-                    new SelectableSpell { Name="Haste Spell", SpellingHousing = 1 },
-                    new SelectableSpell { Name="Skeleton Spell", SpellingHousing = 1 },
-                    new SelectableSpell { Name="Bat Spell", SpellingHousing = 1 }
-                };
-
-                SiegeMachines= new ObservableCollection<SelectableSiegeMachine>
-                {
-                    new SelectableSiegeMachine { Name="Wall Wrecker", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Battle Blimp", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Stone Slammer", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Siege Barracks", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Log Launcher", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Flame Flinger", MachineHousing=1 },
-                    new SelectableSiegeMachine { Name="Battle Drill", MachineHousing=1 }
-                };
-
-                foreach (var hero in Heroes)
+            foreach (var hero in Heroes)
                 {
                     hero.PropertyChanged += (s, e) =>
                     {
@@ -690,10 +780,7 @@ using ArmyOptimizer.Utilities;
             public ObservableCollection<ArmyUnit> OptimizedSpells { get; set; } = new();
             public ObservableCollection<string> OptimizedHeroes { get; set; } = new();
             public ObservableCollection<HeroLoadout> OptimizedHeroLoadouts { get; set; } = new();
-
-
-            public string OptimizedSiegeMachine { get; set; }
-
+            public ObservableCollection<ArmyUnit> OptimizedSiegeMachines { get; set; } = new();
             public string AiAdvice { get; set; }
 
         //task to optimize the army
@@ -719,8 +806,11 @@ using ArmyOptimizer.Utilities;
                         name = s.Name,
                         quantity = s.Quantity
                     }),
-                    siegeMachine = ArmyToOptimize.SelectedSiegeMachines
-                        .FirstOrDefault()?.Name
+                    siegeMachines = ArmyToOptimize.SelectedSiegeMachines.Select(s => new
+                    {
+                        name = s.Name,
+                        quantity = s.Quantity
+                    }).ToList()
                 };
 
                 var result = await _optimizer.OptimizeArmy(request);
@@ -735,8 +825,7 @@ using ArmyOptimizer.Utilities;
                 OptimizedSpells = new ObservableCollection<ArmyUnit>(result.spells);
                 OptimizedHeroes = new ObservableCollection<string>(result.heroes);
                 OptimizedHeroLoadouts = new ObservableCollection<HeroLoadout>(result.heroLoadouts);
-                OptimizedSiegeMachine = result.siegeMachine;
-                AiAdvice = result.aiNotes;
+                OptimizedSiegeMachines = new ObservableCollection<ArmyUnit>(result.siegeMachines); AiAdvice = result.aiNotes;
                 
                 //heere saves all the optimized result in one to pass it to the save army page
                 OptimizedResult = result;
@@ -745,7 +834,7 @@ using ArmyOptimizer.Utilities;
                 OnPropertyChanged(nameof(OptimizedSpells));
                 OnPropertyChanged(nameof(OptimizedHeroes));
                 OnPropertyChanged(nameof(OptimizedHeroLoadouts));
-                OnPropertyChanged(nameof(OptimizedSiegeMachine));
+                OnPropertyChanged(nameof(OptimizedSiegeMachines));
                 OnPropertyChanged(nameof(AiAdvice));
                 OnPropertyChanged(nameof(OptimizedResult));
 
@@ -757,7 +846,30 @@ using ArmyOptimizer.Utilities;
                 IsLoading = false;
             }
         }
+        //load images for all the army requirments
+        private async Task LoadImagesAsync()
+        {
+            var allItems =
+                TownHalls.Select(t => (obj: (dynamic)t, t.ImageUrl))
+                .Concat(Heroes.Select(h => ((dynamic)h, h.ImageUrl)))
+                .Concat(ElixirTroops.Select(t => ((dynamic)t, t.ImageUrl)))
+                .Concat(DarkTroops.Select(t => ((dynamic)t, t.ImageUrl)))
+                .Concat(SuperTroops.Select(t => ((dynamic)t, t.ImageUrl)))
+                .Concat(ElixirSpells.Select(s => ((dynamic)s, s.ImageUrl)))
+                .Concat(DarkSpells.Select(s => ((dynamic)s, s.ImageUrl)))
+                .Concat(SiegeMachines.Select(s => ((dynamic)s, s.ImageUrl)));
 
-       
+            foreach (var (item, url) in allItems)
+            {
+                var image = await ImageCacheService.LoadAsync(url);
+
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    item.Image = image;
+                });
+            }
+        }
+
+
     }
 }

@@ -13,7 +13,7 @@ namespace ArmyOptimizer.Models
         public List<ArmyUnit> spells { get; set; }
         public List<string> heroes { get; set; }
         public List<HeroLoadout> heroLoadouts { get; set; }
-        public string siegeMachine { get; set; }
+        public List<ArmyUnit> siegeMachines { get; set; }
         public string aiNotes { get; set; }
     }
 }

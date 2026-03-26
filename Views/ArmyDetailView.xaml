@@ -1,144 +1,332 @@
 ﻿<UserControl x:Class="ArmyOptimizer.Views.ArmyDetailView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ArmyOptimizer.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=local:ArmyDetailVM}"
              Background="#0B1622">
 
-    <ScrollViewer>
-        <StackPanel Margin="40">
+    <UserControl.Resources>
 
-            <!-- HEADER -->
-            <StackPanel Margin="0,0,0,30">
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#111C2D"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="CornerRadius" Value="15"/>
+        </Style>
 
-                <TextBlock Text="{Binding Army.Name}"
-                           FontSize="26"
-                           FontWeight="Bold"
-                           Foreground="White"/>
+        <Style x:Key="TagStyle" TargetType="Border">
+            <Setter Property="Background" Value="#1F2937"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
 
-                <StackPanel Orientation="Horizontal"
-                            Margin="0,10,0,0">
+    </UserControl.Resources>
 
-                    <TextBlock Text="Town Hall "
-                               Foreground="#9CA3AF"/>
+    <Grid>
+        <ScrollViewer Grid.Row="1"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled">
 
-                    <TextBlock Text="{Binding Army.TownHall}"
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ScrollBar">
+
+                                <Grid Background="Transparent">
+
+                                    <!-- Track -->
+                                    <Border Background="#0f1a2a"
+                      CornerRadius="5"/>
+
+                                    <Track x:Name="PART_Track"
+                     Orientation="Vertical"
+                     IsDirectionReversed="True">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.PageDownCommand"
+                                    Opacity="0"/>
+                                        </Track.DecreaseRepeatButton>
+
+                                        <Track.Thumb>
+                                            <Thumb>
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="#F59E0B"
+                                          CornerRadius="5"
+                                          Margin="2"/>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.PageUpCommand"
+                                    Opacity="0"/>
+                                        </Track.IncreaseRepeatButton>
+
+                                    </Track>
+
+                                </Grid>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
+
+            <StackPanel Margin="40">
+
+                <!-- HEADER -->
+                <StackPanel Margin="0,0,0,30">
+
+                    <TextBlock Text="{Binding Army.Name}"
+                               d:Text="🔥 Hybrid Attack TH13"
+                               FontSize="28"
+                               FontWeight="Bold"
                                Foreground="White"
-                               FontWeight="Bold"/>
+                               Margin="0,0,0,15"/>
 
-                    <TextBlock Text="  •  "
-                               Foreground="#6B7280"/>
+                    <StackPanel Orientation="Horizontal">
 
-                    <TextBlock Text="{Binding Army.CreatedAt,
-                                      StringFormat='{}{0:dd MMM yyyy HH:mm}'}"
-                               Foreground="#6B7280"/>
+                        <Border Background="#2C1F0E"
+                                Width="50"
+                                Height="50"
+                                CornerRadius="12"
+                                Margin="0,0,15,0">
+
+                            <TextBlock Text="🏰"
+                                       FontSize="22"
+                                       Foreground="Gold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel>
+                            <TextBlock Text="{Binding Army.TownHall, StringFormat=Town Hall {0}}"
+                                       d:Text="Town Hall 13"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="White"/>
+
+                            <TextBlock Text="{Binding Army.Description}"
+                                       d:Text="Powerful hybrid attack with Queen Walk and Siege Barracks."
+                                       Foreground="#9CA3AF"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Width="400"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
                 </StackPanel>
+
+                <!-- STATS -->
+                <UniformGrid Columns="4" Margin="0,0,0,30">
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="👑" FontSize="18" Foreground="DarkGoldenrod"/>
+                            <TextBlock Text="{Binding HeroesCount}" d:Text="3" FontSize="22" Foreground="White"/>
+                            <TextBlock Text="HEROES" Foreground="#9CA3AF" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="⚔" FontSize="18" Foreground="DarkOrange"/>
+                            <TextBlock Text="{Binding TroopsCount}" d:Text="25" FontSize="22" Foreground="White"/>
+                            <TextBlock Text="TROOPS" Foreground="#9CA3AF" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="✨" FontSize="18" Foreground="DarkMagenta"/>
+                            <TextBlock Text="{Binding SpellsCount}" d:Text="7" FontSize="22" Foreground="White"/>
+                            <TextBlock Text="SPELLS" Foreground="#9CA3AF" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🏰" FontSize="18" Foreground="DarkRed"/>
+                            <TextBlock Text="{Binding SiegeCount}" d:Text="3" FontSize="22" Foreground="White"/>
+                            <TextBlock Text="SIEGE" Foreground="#9CA3AF" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
+
+                <!-- 🔥 GRID REAL -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- HEROES -->
+                    <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="👑 HEROES"
+                                       Foreground="DarkGoldenrod"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <ItemsControl ItemsSource="{Binding DisplayHeroes}"
+                                          d:ItemsSource="{d:SampleData ItemCount=4}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource TagStyle}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Image}" Width="35" Height="35" Margin="0,0,8,0"/>
+                                                <TextBlock Text="{Binding Name}"
+                                                   VerticalAlignment="Center"
+                                                   FontWeight="Bold"
+                                                   Foreground="White"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- TROOPS -->
+                    <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="⚔ TROOPS"
+                                       Foreground="DarkOrange"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <ItemsControl ItemsSource="{Binding DisplayTroops}"
+                                          d:ItemsSource="{d:SampleData ItemCount=4}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource TagStyle}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Image}" Width="30" Height="30" Margin="0,0,8,0"/>
+                                                <TextBlock Foreground="White">
+                                                    <Run Text="{Binding Quantity}"/>
+                                                    <Run Text="x "/>
+                                                    <Run Text="{Binding Name}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- SPELLS -->
+                    <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="✨ SPELLS"
+                                       Foreground="DarkMagenta"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <ItemsControl ItemsSource="{Binding DisplaySpells}"
+                                          d:ItemsSource="{d:SampleData ItemCount=3}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource TagStyle}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Image}" Width="30" Height="30" Margin="0,0,8,0"/>
+                                                <TextBlock Foreground="White">
+                                                    <Run Text="{Binding Quantity}"/>
+                                                    <Run Text="x "/>
+                                                    <Run Text="{Binding Name}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- SIEGE -->
+                    <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="🏰 SIEGE MACHINES"
+                                       Foreground="DarkRed"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <ItemsControl ItemsSource="{Binding DisplaySiege}"
+                                          d:ItemsSource="{d:SampleData ItemCount=2}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource TagStyle}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Image}" Width="30" Height="30" Margin="0,0,8,0"/>
+                                                <TextBlock Foreground="White">
+                                                    <Run Text="{Binding Quantity}"/>
+                                                    <Run Text="x "/>
+                                                    <Run Text="{Binding Name}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 💡 AI ADVICE FULL WIDTH -->
+                    <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                            Background="#111c2b"
+                            CornerRadius="12"
+                            Padding="20"
+                            Margin="10">
+
+                        <StackPanel>
+
+                            <TextBlock Text="💡 Advice"
+                                       FontSize="18"
+                                       Foreground="#F59E0B"
+                                       Margin="0,0,0,10"/>
+
+                            <TextBlock Text="{Binding Army.AiNotes}"
+                                       d:Text="Use the Queen Walk to take out key defenses while your Siege Barracks deploys troops to support the main attack."
+                                       TextWrapping="Wrap"
+                                       Foreground="White"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- BACK -->
+                <Button Content="← Back to Home"
+                        Width="120"
+                        Height="30"
+                        Margin="0,30,0,0"
+                        HorizontalAlignment="Center"
+                        Background="Orange"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="Bold"
+                        Command="{Binding GoBackCommand}"/>
+
             </StackPanel>
 
-            <!-- SUMMARY CARDS -->
-            <UniformGrid Columns="4" Margin="0,0,0,40">
-
-                <Border Style="{StaticResource SummaryCardStyle}">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding HeroesCount}"
-                                   FontSize="22"
-                                   Foreground="White"
-                                   FontWeight="Bold"/>
-                        <TextBlock Text="HEROES"
-                                   Foreground="#9CA3AF"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Style="{StaticResource SummaryCardStyle}">
-
-                    <StackPanel HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-
-                        <!-- ICON -->
-                        <Image Source="/Images/hero_icon.png"
-               Width="26"
-               Height="26"
-               Margin="0,0,0,10"/>
-
-                        <!-- COUNT -->
-                        <TextBlock Text="{Binding HeroesCount}"
-                   FontSize="28"
-                   FontWeight="Bold"
-                   Foreground="White"
-                   HorizontalAlignment="Center"/>
-
-                        <!-- LABEL -->
-                        <TextBlock Text="HEROES"
-                   Foreground="#9CA3AF"
-                   FontSize="12"
-                   HorizontalAlignment="Center"
-                   Margin="0,5,0,0"/>
-
-                    </StackPanel>
-
-                </Border>
-
-                <Border Style="{StaticResource SummaryCardStyle}">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding SpellsCount}"
-                                   FontSize="22"
-                                   Foreground="White"
-                                   FontWeight="Bold"/>
-                        <TextBlock Text="SPELLS"
-                                   Foreground="#9CA3AF"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Style="{StaticResource SummaryCardStyle}">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding SiegeCount}"
-                                   FontSize="22"
-                                   Foreground="White"
-                                   FontWeight="Bold"/>
-                        <TextBlock Text="SIEGE"
-                                   Foreground="#9CA3AF"/>
-                    </StackPanel>
-                </Border>
-
-            </UniformGrid>
-
-            <!-- HEROES SECTION -->
-            <Border Style="{StaticResource SectionCardStyle}">
-                <StackPanel>
-                    <TextBlock Text="HEROES"
-                               Foreground="#F59E0B"
-                               FontWeight="Bold"
-                               Margin="0,0,0,10"/>
-
-                    <ItemsControl ItemsSource="{Binding Army.Heroes}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="#1A2435"
-                                        CornerRadius="8"
-                                        Padding="8"
-                                        Margin="5">
-                                    <TextBlock Text="{Binding}"
-                                               Foreground="White"/>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
-
-            <!-- BACK BUTTON -->
-            <Button Content="← Back to Home"
-                    Margin="0,40,0,0"
-                    Command="{Binding GoBackCommand}"
-                    Background="#111C2D"
-                    Foreground="White"
-                    Padding="10"
-                    BorderThickness="0"/>
-
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

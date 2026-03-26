@@ -129,30 +129,20 @@
                                  BorderThickness="1"
                                  Padding="10"/>
 
-                        <!-- EMAIL -->
-                        <TextBlock Text="Email"
-                                   Foreground="White"
-                                   Margin="0,15,0,5"/>
-
-                        <TextBox Height="40"
-                                 Text="{Binding Email}"
-                                 Background="#0B1622"
-                                 Foreground="White"
-                                 BorderBrush="#1F2937"
-                                 BorderThickness="1"
-                                 Padding="10"/>
-
+                        
                         <!-- PASSWORD -->
                         <TextBlock Text="Password"
                                    Foreground="White"
                                    Margin="0,15,0,5"/>
 
                         <PasswordBox x:Name="PasswordBox"
-                                     Height="40"
-                                     Background="#0B1622"
-                                     BorderBrush="#1F2937"
-                                     BorderThickness="1"
-                                     Padding="10"/>
+                            Height="40"
+                            Background="#0B1622"
+                            BorderBrush="#1F2937"
+                            Foreground="White"
+                            BorderThickness="1"
+                            Padding="10"
+                            PasswordChanged="PasswordBox_PasswordChanged"/>
 
                         <!-- CONFIRM -->
                         <TextBlock Text="Confirm Password"
@@ -160,11 +150,13 @@
                                    Margin="0,15,0,5"/>
 
                         <PasswordBox x:Name="ConfirmPasswordBox"
-                                     Height="40"
-                                     Background="#0B1622"
-                                     BorderBrush="#1F2937"
-                                     BorderThickness="1"
-                                     Padding="10"/>
+                            Height="40"
+                            Background="#0B1622"
+                            BorderBrush="#1F2937"
+                            Foreground="White"
+                            BorderThickness="1"
+                            Padding="10"
+                             PasswordChanged="ConfirmPasswordBox_PasswordChanged"/> 
 
                         <!-- BUTTON -->
                         <Button Content="Create Account"

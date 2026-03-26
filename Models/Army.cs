@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ArmyOptimizer.Models
 {
@@ -18,7 +14,10 @@ namespace ArmyOptimizer.Models
         public List<string>? Heroes { get; set; }
         public List<HeroLoadout>? HeroLoadouts { get; set; }
 
-        public string? SiegeMachine { get; set; }
+        [JsonPropertyName("siegeMachines")]
+        public List<SiegeMachine>? SiegeMachines { get; set; }
+
+        [JsonPropertyName("aiNotes")]
         public string? AiNotes { get; set; }
 
     }

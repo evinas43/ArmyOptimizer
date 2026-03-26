@@ -37,9 +37,7 @@ namespace ArmyOptimizer.Services
 
         public async Task<Army?> SaveUserOptimizedArmy(object army)
         {
-            MessageBox.Show(_client.BaseAddress + "api/Army/save");
-
-
+         
             var response = await _client.PostAsJsonAsync("api/Army/save", army);
 
             var content = await response.Content.ReadAsStringAsync();

@@ -158,7 +158,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
+
+                    
 
                     <!-- HEROES -->
                     <Border Grid.Row="0" Grid.Column="0"
@@ -188,6 +191,7 @@
                                                 <TextBlock Text="{Binding HeroName}"
                                                            FontSize="16"
                                                            FontWeight="Bold"
+                                                           Margin="0,0,0,5"
                                                            Foreground="White"/>
 
                                                 <ItemsControl ItemsSource="{Binding Equipment}">
@@ -196,6 +200,7 @@
                                                             <TextBlock Text="{Binding}"
                                                                        Foreground="#9CA3AF"
                                                                        FontSize="13"
+                                                                       FontWeight="Bold"
                                                                        Margin="8,0,0,0"/>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
@@ -301,18 +306,30 @@
                                        FontWeight="Bold"
                                        Margin="0,0,0,12"/>
 
-                            <Border Background="#1f2937"
-                                    CornerRadius="8"
-                                    Padding="8">
-                                <TextBlock Text="{Binding ArmyData.siegeMachine}"
-                                           Foreground="White"
-                                           FontSize="14"/>
-                            </Border>
 
+                            <ItemsControl ItemsSource="{Binding ArmyData.siegeMachines}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Border Background="#1f2937"
+                                                    CornerRadius="8"
+                                                    Padding="6"
+                                                    Margin="3">
+
+                                            <TextBlock Foreground="White" FontSize="14">
+                                                    <Run Text="{Binding Quantity}"/>
+                                                    <Run Text="x "/>
+                                                    <Run Text="{Binding Name}"/>
+                                            </TextBlock>
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </Border>
                     <!-- AI ADVICE -->
-                    <Border Background="#111c2b"
+                    <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#111c2b"
                     CornerRadius="12"
                     Padding="20"
                     Margin="10">
@@ -324,7 +341,7 @@
                                Foreground="#F59E0B"
                                Margin="0,0,0,10"/>
 
-                            <TextBlock Text="{Binding ArmyData.AiAdvice}"
+                            <TextBlock Text="{Binding ArmyData.aiNotes}"
                                TextWrapping="Wrap"
                                Foreground="White"/> 
 

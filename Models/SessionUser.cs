@@ -10,5 +10,7 @@ namespace ArmyOptimizer.Models
     {
         public static string? Username { get; set; }
         public static string? token { get; set; }
+        public static string? Role { get; set; }   
+
     }
 }

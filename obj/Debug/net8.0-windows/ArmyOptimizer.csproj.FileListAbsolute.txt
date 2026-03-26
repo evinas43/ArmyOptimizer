@@ -42,3 +42,5 @@ C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\OptimizeArmyView.g.cs
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\SaveArmyView.g.cs
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\SaveArmyView.baml
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\CompleteArmyListView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Debug\net8.0-windows\Views\CompleteArmyListView.baml

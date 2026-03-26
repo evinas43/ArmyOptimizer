@@ -48,44 +48,39 @@ namespace ArmyOptimizer.ViewModels
 
         private async Task Save()
         {
-            MessageBox.Show($"TH: {ArmyData?.townHall}\nTroops: {ArmyData?.troops?.Count}\nSpells: {ArmyData?.spells?.Count}");
 
-            foreach (var h in ArmyData.heroLoadouts)
-            {
-                MessageBox.Show($"{h.HeroName} → Equipments: {h.Equipment?.Count}");
-            }
-            MessageBox.Show($"SiegeMachine: {ArmyData.siegeMachine ?? "NULL"}");
             var request = new
             {
                 name = Name,
                 description = Description,
                 townHall = ArmyData.townHall,
 
-                // Troops saved explicitly
                 troops = ArmyData.troops.Select(t => new
                 {
                     name = t.Name,
                     quantity = t.Quantity
-                }),
+                }).ToList(),
 
-                //spells saved explicitly
                 spells = ArmyData.spells.Select(s => new
                 {
                     name = s.Name,
                     quantity = s.Quantity
-                }),
+                }).ToList(),
 
                 heroes = ArmyData.heroes,
 
-                //heroe loadouts saved with details 
                 heroLoadouts = ArmyData.heroLoadouts.Select(h => new
                 {
                     heroName = h.HeroName,
                     equipment = h.Equipment,
                     petName = h.PetName
-                }),
+                }).ToList(),
 
-                siegeMachine = ArmyData.siegeMachine,
+                siegeMachines = ArmyData.siegeMachines.Select(s => new
+                {
+                    name = s.Name,
+                    quantity = s.Quantity
+                }).ToList(),
 
                 aiNotes = ArmyData.aiNotes
             };
@@ -94,12 +89,9 @@ namespace ArmyOptimizer.ViewModels
 
             if (result == null)
             {
-                MessageBox.Show("Error saving army");
+                MessageBox.Show("Error saving army", "error"); 
                 return;
             }
-
-            MessageBox.Show("Army saved ✔️");
-
             _navigation.CurrentView = new HomeVM(_navigation);
         }
     }

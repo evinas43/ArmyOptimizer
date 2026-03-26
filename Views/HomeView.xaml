@@ -34,6 +34,23 @@
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             VerticalAlignment="Center">
+                    <Border Background="#1f2937"
+                        CornerRadius="10"
+                        Padding="8,4"
+                        Margin="0,0,20,0">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="👛" Foreground="Gold"
+                       FontSize="14"
+                       Margin="0,0,5,0"/>
+
+                            <TextBlock Text="{Binding TokensRemaining}"
+                       Foreground="{Binding TokenColor}"
+                       FontSize="14"
+                       FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+
 
                     <Button Content="⎋"
                         Background="Transparent"
@@ -142,10 +159,44 @@
                     </Border>
 
                     <!-- Recent Armies Title -->
-                    <TextBlock Text="RECENT ARMIES"
-                               Foreground="#9CA3AF"
-                               FontWeight="Bold"
-                               Margin="0,0,0,15"/>
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Title -->
+                        <TextBlock Text="RECENT ARMIES"
+               Foreground="#9CA3AF"
+               FontWeight="Bold"
+               VerticalAlignment="Center"/>
+
+                        <!-- See All Button -->
+                        <TextBlock Text="View All Armies"
+                           Grid.Column="1"
+                           Foreground="White"
+                           Cursor="Hand"
+                           VerticalAlignment="Center"
+                           FontWeight="SemiBold">
+
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#D1D5DB"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                          Command="{Binding SeeAllArmiesCommand}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+
+                    </Grid>
 
                     <ItemsControl ItemsSource="{Binding Armies}">
                         <ItemsControl.ItemTemplate>

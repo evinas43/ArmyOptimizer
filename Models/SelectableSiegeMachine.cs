@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using ArmyOptimizer.Utilities;
 
 namespace ArmyOptimizer.Models
@@ -11,6 +12,22 @@ namespace ArmyOptimizer.Models
     {
         public string Name { get; set; }
         public int MachineHousing { get; set; }
+        public string ImageUrl { get; set; }
+
+        // Bitmap image loaded asynchronously to avoid UI delays and missing images
+
+        private BitmapImage _image;
+        public BitmapImage Image
+        {
+            get => _image;
+            set
+            {
+                if (_image == value) return;
+
+                _image = value;
+                OnPropertyChanged();
+            }
+        }
         public RelayCommand IncreaseCommand { get; set; }
         public RelayCommand DecreaseCommand { get; set; }
 

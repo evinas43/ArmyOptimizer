@@ -26,13 +26,12 @@ namespace ArmyOptimizer.Views
         {
             InitializeComponent();
         }
-        private void PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext is RegisterVM vm)
                 vm.Password = ((PasswordBox)sender).Password;
         }
-
-        private void ConfirmPasswordChanged(object sender, RoutedEventArgs e)
+        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext is RegisterVM vm)
                 vm.ConfirmPassword = ((PasswordBox)sender).Password;
