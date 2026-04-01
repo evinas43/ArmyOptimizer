@@ -314,62 +314,75 @@ using ArmyOptimizer.Utilities;
 
             public IEnumerable<SelectableSpell> SelectedDarkSpells =>DarkSpells.Where(s => s.Quantity > 0);
 
-            private readonly AiOptimizerService _optimizer;
+        private readonly AiOptimizerService _optimizer;
+
+        public async Task InitializeAsync()
+        {
+            IsLoading = true;
+
+            // 1. Inicializar datos (rápido, no hace falta Task.Run)
+            await InitializeCollectionsAsync();
+
+            // 2. Inicializar comandos (depende de datos)
+            InitializeTroopCommands();
+
+            // 3. Cargar imágenes (esto sí es lo pesado)
+            await LoadImagesAsync();
+
+            IsLoading = false;
+        }
 
 
 
         //constructor  
         public OptimizeArmyVM(NavigationVM navigation)
-            {
-                _navigation = navigation;
+        {
+            _navigation = navigation;
 
-                _optimizer = new AiOptimizerService(HttpService.Client);
-                
-              
+            _optimizer = new AiOptimizerService(HttpService.Client);
 
-            OptimizeCommand = new RelayCommand(async _ => await Optimize());
-
-            // 1 
+            // Core model
             ArmyToOptimize = new ArmyToOptimize();
 
-                // 2 Initialize Data First 
-                InitializeCollections();
-                
-                // 3 Initialize The Quantity selector
-                InitializeTroopCommands();
+            Heroes = new ObservableCollection<SelectableHero>();
+            ElixirTroops = new ObservableCollection<SelectableTroop>();
+            DarkTroops = new ObservableCollection<SelectableTroop>();
+            SuperTroops = new ObservableCollection<SelectableTroop>();
+            ElixirSpells = new ObservableCollection<SelectableSpell>();
+            DarkSpells = new ObservableCollection<SelectableSpell>();
+            SiegeMachines = new ObservableCollection<SelectableSiegeMachine>();
+            TownHalls = new ObservableCollection<TownHallOption>();
 
-                // 3.5 Initialize the images 
-                _ = LoadImagesAsync();
+            // Commands
+            OptimizeCommand = new RelayCommand(async _ => await Optimize());
 
-            // 4 Commands
             BackCommand = new RelayCommand(_ =>
-                    _navigation.CurrentView = new HomeVM(_navigation));
+                _navigation.CurrentView = new HomeVM(_navigation));
 
-                PreviousStepCommand = new RelayCommand(_ =>
+            PreviousStepCommand = new RelayCommand(_ =>
+            {
+                if (CurrentStep == 2)
+                    CurrentStep = 1;
+
+                else if (CurrentStep == 3)
+                    CurrentStep = 2;
+
+                else if (CurrentStep == 4)
                 {
-                    if (CurrentStep == 2)
-                        CurrentStep = 1;
-
-                    else if (CurrentStep == 3)
+                    if (ArmyToOptimize.TownHallLevel >= 12)
+                        CurrentStep = 3;
+                    else
                         CurrentStep = 2;
+                }
 
-                    else if (CurrentStep == 4)
-                    {
-                        if (ArmyToOptimize.TownHallLevel >= 12)
-                            CurrentStep = 3;
-                        else
-                            CurrentStep = 2;
-                    }
-
-                    else if (CurrentStep == 5)
-                    {
-                        if (ArmyToOptimize.TownHallLevel >= 12)
-                            CurrentStep = 4;
-                        else
-                            CurrentStep = 3;
-                    }
-                    
-                });
+                else if (CurrentStep == 5)
+                {
+                    if (ArmyToOptimize.TownHallLevel >= 12)
+                        CurrentStep = 4;
+                    else
+                        CurrentStep = 3;
+                }
+            });
 
             SelectTownHallCommand = new RelayCommand<int>(th =>
             {
@@ -385,39 +398,35 @@ using ArmyOptimizer.Utilities;
             });
 
             ToggleTroopCommand = new RelayCommand<SelectableTroop>(troop =>
-                {
-                    troop.IsSelected = !troop.IsSelected;
+            {
+                troop.IsSelected = !troop.IsSelected;
 
-                    if (!troop.IsSelected)
-                        troop.Quantity = 0;
+                if (!troop.IsSelected)
+                    troop.Quantity = 0;
 
-                    OnPropertyChanged(nameof(CurrentHousing));
-                });
-           
-            
-                ToggleSiegeMachinesCommand = new RelayCommand<SelectableSiegeMachine>(machine =>
-                {
-                    machine.IsSelected = !machine.IsSelected;
-                    if (!machine.IsSelected)
-                        machine.Quantity = 0;
-                    UpdateSiegeMachineHousing();
-                
-                    OnPropertyChanged(nameof(HasSelectedSiegeMachine));
-                });
-            
+                OnPropertyChanged(nameof(CurrentHousing));
+            });
 
-                ToggleSpellCommand = new RelayCommand<SelectableSpell>(spell =>
-                {
-                    spell.IsSelected = !spell.IsSelected;
+            ToggleSiegeMachinesCommand = new RelayCommand<SelectableSiegeMachine>(machine =>
+            {
+                machine.IsSelected = !machine.IsSelected;
 
-                    if (!spell.IsSelected)
-                        spell.Quantity = 0;
+                if (!machine.IsSelected)
+                    machine.Quantity = 0;
 
-                    UpdateSpellHousing();
-                });
+                UpdateSiegeMachineHousing();
+                OnPropertyChanged(nameof(HasSelectedSiegeMachine));
+            });
 
+            ToggleSpellCommand = new RelayCommand<SelectableSpell>(spell =>
+            {
+                spell.IsSelected = !spell.IsSelected;
 
+                if (!spell.IsSelected)
+                    spell.Quantity = 0;
 
+                UpdateSpellHousing();
+            });
 
             NextCommand = new RelayCommand(_ =>
             {
@@ -425,7 +434,6 @@ using ArmyOptimizer.Utilities;
                 {
                     CurrentStep = 3;
                 }
-
                 else if (CurrentStep == 3)
                 {
                     if (ArmyToOptimize.TownHallLevel >= 12)
@@ -436,48 +444,46 @@ using ArmyOptimizer.Utilities;
                         CurrentStep = 4;
                     }
                 }
-
                 else if (CurrentStep == 4)
                 {
-                    BuildArmyModel();   // ALWAYS build before summary
+                    BuildArmyModel();
                     CurrentStep = ArmyToOptimize.TownHallLevel >= 12 ? 5 : 4;
                 }
             });
 
-
-            //Go to save army page with the current army configuration
             SaveArmyCommand = new RelayCommand(_ =>
             {
                 BuildArmyModel();
-                //we send the optimized result army and "this" to save the state of the form if the user wants to come back to the form from the save army page
                 _navigation.CurrentView = new SaveArmyVM(_navigation, OptimizedResult, this);
             });
         }
         //--------------------------------------------------------------------------
 
-            private void InitializeCollections()
+        public async Task InitializeCollectionsAsync()
+        {
+            await Task.Run(() =>
             {
 
-            TownHalls = new ObservableCollection<TownHallOption>
-            {
-                new() { Level = 7, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall7_ll63f5.png" },
-                new() { Level = 8, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall8_iaxn0n.png" },
-                new() { Level = 9, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall9_zstrie.png" },
-                new() { Level = 10, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall10_eq4hio.png" },
-                new() { Level = 11, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall11_vqtc8g.png" },
-                new() { Level = 12, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town_Hall12-5_fmb4yw.png" },
-                new() { Level = 13, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town-hall-13-5_syw8cr.png" },
-                new() { Level = 14, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall14-5_qpsnsf.png" },
-                new() { Level = 15, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall15-5_zbyib8.png" },
-                new() { Level = 16, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall16_loputx.png" },
-                new() { Level = 17, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall17-5_z0prjh.png" },
-                new() { Level = 18, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall18_e9l7v3.png" }
-            };
+                TownHalls = new ObservableCollection<TownHallOption>
+                {
+                    new() { Level = 7, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall7_ll63f5.png" },
+                    new() { Level = 8, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall8_iaxn0n.png" },
+                    new() { Level = 9, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall9_zstrie.png" },
+                    new() { Level = 10, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall10_eq4hio.png" },
+                    new() { Level = 11, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall11_vqtc8g.png" },
+                    new() { Level = 12, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town_Hall12-5_fmb4yw.png" },
+                    new() { Level = 13, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375341/Town-hall-13-5_syw8cr.png" },
+                    new() { Level = 14, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall14-5_qpsnsf.png" },
+                    new() { Level = 15, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall15-5_zbyib8.png" },
+                    new() { Level = 16, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall16_loputx.png" },
+                    new() { Level = 17, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375343/Town_Hall17-5_z0prjh.png" },
+                    new() { Level = 18, ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375342/Town_Hall18_e9l7v3.png" }
+                };
 
-            OnPropertyChanged(nameof(TownHalls));
+                OnPropertyChanged(nameof(TownHalls));
 
-            Heroes = new ObservableCollection<SelectableHero>
-            {
+                Heroes = new ObservableCollection<SelectableHero>
+                {
                 new SelectableHero
                 {
                     Name = "Barbarian King",
@@ -504,7 +510,7 @@ using ArmyOptimizer.Utilities;
                     ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774375917/Avatar_Hero_Royal_Champion_iu0z2e.png"
                 }
             };
-            ElixirTroops = new ObservableCollection<SelectableTroop>
+                ElixirTroops = new ObservableCollection<SelectableTroop>
             {
                 new SelectableTroop { Name="Barbarian", HousingSpace=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376169/Avatar_Barbarian_lwtrbq.png" },
                 new SelectableTroop { Name="Archer", HousingSpace=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376167/Avatar_Archer_p8fvxs.png" },
@@ -527,7 +533,7 @@ using ArmyOptimizer.Utilities;
                 new SelectableTroop { Name="Meteor Golem", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376172/Avatar_Meteor_Golem_ecr7w8.png" }
             };
 
-            DarkTroops = new ObservableCollection<SelectableTroop>
+                DarkTroops = new ObservableCollection<SelectableTroop>
             {
                 new SelectableTroop { Name="Minion", HousingSpace=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376407/Avatar_Minion_miyqch.png" },
                 new SelectableTroop { Name="Hog Rider", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376414/Avatar_Hog_Rider_gnx8mx.png" },
@@ -543,7 +549,7 @@ using ArmyOptimizer.Utilities;
                 new SelectableTroop { Name="Furnace", HousingSpace=18, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376409/Avatar_Furnace_jvxkus.png" }
             };
 
-            SuperTroops = new ObservableCollection<SelectableTroop>
+                SuperTroops = new ObservableCollection<SelectableTroop>
             {
                 new SelectableTroop { Name="Super Barbarian", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376772/Avatar_Super_Barbarian_fphb14.png" },
                 new SelectableTroop { Name="Super Archer", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376771/Avatar_Super_Archer_zt7amw.png" },
@@ -563,7 +569,7 @@ using ArmyOptimizer.Utilities;
             };
 
 
-            ElixirSpells = new ObservableCollection<SelectableSpell>
+                ElixirSpells = new ObservableCollection<SelectableSpell>
             {
                 new SelectableSpell { Name="Lightning Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378218/Lightning_Spell_info_wd7hkz.png" },
                 new SelectableSpell{ Name="Healing Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378209/Healing_Spell_info_kobwfq.png" },
@@ -577,18 +583,18 @@ using ArmyOptimizer.Utilities;
                 new SelectableSpell { Name="Totem Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378214/Totem_Spell_info_akrugc.png" }
             };
 
-            DarkSpells = new ObservableCollection<SelectableSpell>
+                DarkSpells = new ObservableCollection<SelectableSpell>
             {
                  new SelectableSpell  { Name="Poison Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379040/Poison_Spell_info_hkhqfs.png" },
                  new SelectableSpell { Name="Earthquake Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379038/Earthquake_Spell_info_b7anqy.png" },
                  new SelectableSpell { Name="Haste Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379031/Haste_Spell_info_ceyyeo.png" },
                  new SelectableSpell { Name="Skeleton Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379033/Skeleton_Spell_info_nbn76m.png" },
-                 new SelectableSpell { Name="Bat Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379033/Skeleton_Spell_info_nbn76m.png" }, // ⚠️ cámbialo si tienes el real
+                 new SelectableSpell { Name="Bat Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379037/Bat_Spell_info_wa7pvn.png" },
                  new SelectableSpell { Name="Overgrowth Spell", SpellingHousing=2, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379036/Overgrowth_Spell_info_pe6duh.png" },
                  new SelectableSpell { Name="Ice Block Spell", SpellingHousing=1, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774379034/Ice_Block_Spell_info_dakpyu.png" }
             };
 
-            SiegeMachines = new ObservableCollection<SelectableSiegeMachine>
+                SiegeMachines = new ObservableCollection<SelectableSiegeMachine>
                 {
                     new SelectableSiegeMachine
                     {
@@ -639,6 +645,16 @@ using ArmyOptimizer.Utilities;
                         ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png"
                     }
                 };
+            });
+
+            OnPropertyChanged(nameof(TownHalls));
+            OnPropertyChanged(nameof(Heroes));
+            OnPropertyChanged(nameof(ElixirTroops));
+            OnPropertyChanged(nameof(DarkTroops));
+            OnPropertyChanged(nameof(SuperTroops));
+            OnPropertyChanged(nameof(ElixirSpells));
+            OnPropertyChanged(nameof(DarkSpells));
+            OnPropertyChanged(nameof(SiegeMachines));
 
             foreach (var hero in Heroes)
                 {

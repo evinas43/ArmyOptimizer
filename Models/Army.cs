@@ -12,6 +12,7 @@ namespace ArmyOptimizer.Models
         public List<Troop>? Troops { get; set; }
         public List<Spell>? Spells { get; set; }
         public List<string>? Heroes { get; set; }
+
         public List<HeroLoadout>? HeroLoadouts { get; set; }
 
         [JsonPropertyName("siegeMachines")]

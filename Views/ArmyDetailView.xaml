@@ -185,19 +185,83 @@
                                        FontWeight="Bold"
                                        Margin="0,0,0,10"/>
 
-                            <ItemsControl ItemsSource="{Binding DisplayHeroes}"
-                                          d:ItemsSource="{d:SampleData ItemCount=4}">
+                            <ItemsControl ItemsSource="{Binding DisplayHeroes}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Style="{StaticResource TagStyle}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="{Binding Image}" Width="35" Height="35" Margin="0,0,8,0"/>
-                                                <TextBlock Text="{Binding Name}"
-                                                   VerticalAlignment="Center"
-                                                   FontWeight="Bold"
-                                                   Foreground="White"/>
-                                            </StackPanel>
+
+                                        <Border Background="#16283f"
+                    CornerRadius="12"
+                    Padding="12"
+                    Margin="6">
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- HERO IMAGE -->
+                                                <Border Background="#0f1a2a"
+                            CornerRadius="10"
+                            Padding="5">
+                                                    <Image Source="{Binding Image}"
+                               Width="50"
+                               Height="50"/>
+                                                </Border>
+
+                                                <!-- RIGHT SIDE -->
+                                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+
+                                                    <!-- NAME + PET -->
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <TextBlock Text="{Binding Name}"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontSize="14"/>
+
+                                                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                                            <Image Source="{Binding PetImage}"
+                                       Width="18"
+                                       Height="18"
+                                       Margin="0,0,4,0"/>
+                                                            <TextBlock Text="{Binding PetName}"
+                                           Foreground="#F59E0B"
+                                           FontSize="12"/>
+                                                        </StackPanel>
+
+                                                    </StackPanel>
+
+                                                    <!-- EQUIPMENT -->
+                                                    <ItemsControl ItemsSource="{Binding Equipment}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel Margin="0,6,0,0"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border Background="#1f2937"
+                                            CornerRadius="6"
+                                            Padding="6,2"
+                                            Margin="3">
+
+                                                                    <TextBlock Text="{Binding}"
+                                                   Foreground="#9CA3AF"
+                                                   FontSize="11"/>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+
+                                                    </ItemsControl>
+
+                                                </StackPanel>
+
+                                            </Grid>
+
                                         </Border>
+
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

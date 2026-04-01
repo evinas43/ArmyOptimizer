@@ -108,5 +108,21 @@ namespace ArmyOptimizer.Helpers
             { "Flame Flinger", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378756/Avatar_Flame_Flinger_uok6nn.png" },
             { "Battle Drill", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png" }
         };
+
+        public static Dictionary<string, string> Pets = new()
+        {
+            { "Unicorn", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544115/Avatar_Unicorn_hreoji.png" },
+            { "Spirit Fox", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544114/Avatar_Spirit_Fox_lr4rdq.png" },
+            { "Sneezy", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544113/Avatar_Sneezy_pt72kg.png" },
+            { "Poison Lizard", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544113/Avatar_Poison_Lizard_o8u0mh.png" },
+            { "Mighty Yak", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544113/Avatar_Mighty_Yak_scwvwp.png" },
+            { "Phoenix", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544113/Avatar_Phoenix_bd2zze.png" },
+            { "Greedy Raven", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544110/Avatar_Greedy_Raven_hdghyv.png" },
+            { "L.A.S.S.I", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544110/Avatar_L.A.S.S.I_of3tye.png" },
+            { "Angry Jelly", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Angry_Jelly_zir92m.png" },
+            { "Electro Owl", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Electro_Owl_dvdzur.png" },
+            { "Diggy", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Diggy_o1uvgs.png" },
+            { "Frosty", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Frosty_gmslhm.png" }
+        };
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ArmyOptimizer.ViewModels;
 
 namespace ArmyOptimizer.Views
 {
@@ -23,6 +24,16 @@ namespace ArmyOptimizer.Views
         public OptimizeArmyView()
         {
             InitializeComponent();
+
+            Loaded += async (s, e) =>
+            {
+                if (DataContext is OptimizeArmyVM vm)
+                {
+                    await vm.InitializeAsync();
+                }
+            };
         }
+
+
     }
 }

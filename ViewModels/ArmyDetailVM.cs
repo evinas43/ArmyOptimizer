@@ -20,7 +20,7 @@ namespace ArmyOptimizer.ViewModels
         public ObservableCollection<DisplayUnit> DisplayTroops { get; set; } = new();
         public ObservableCollection<DisplayUnit> DisplaySpells { get; set; } = new();
         public ObservableCollection<DisplayUnit> DisplaySiege { get; set; } = new();
-        public ObservableCollection<DisplayUnit> DisplayHeroes { get; set; } = new();
+        public ObservableCollection<DisplayHero> DisplayHeroes { get; set; } = new();
 
 
         public int HeroesCount => Army?.Heroes?.Count ?? 0;
@@ -116,22 +116,29 @@ namespace ArmyOptimizer.ViewModels
 
                 DisplaySiege.Add(item);
             }
-            foreach (var hero in Army.Heroes)
+
+            foreach (var hero in Army.HeroLoadouts)
             {
-                var item = new DisplayUnit
+                var item = new DisplayHero
                 {
-                    Name = hero,
-                    Quantity = 1 // siempre 1
+                    Name = hero.HeroName,
+                    Equipment = hero.Equipment.ToList(),
+                    PetName = hero.PetName
                 };
 
-                if (GameImageLibrary.HeroImages.TryGetValue(hero, out var url))
+                if (GameImageLibrary.HeroImages.TryGetValue(hero.HeroName, out var url))
                 {
                     item.Image = await ImageCacheService.LoadAsync(url);
+                }
+      
+                if (!string.IsNullOrEmpty(hero.PetName) &&
+                    GameImageLibrary.Pets.TryGetValue(hero.PetName, out var url2))
+                {
+                    item.PetImage = await ImageCacheService.LoadAsync(url2);
                 }
 
                 DisplayHeroes.Add(item);
             }
-
 
         }
     }

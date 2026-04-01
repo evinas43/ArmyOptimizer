@@ -1008,7 +1008,7 @@ Converter={StaticResource BoolToVisibilityConverter}}">
                         </StackPanel>
                     </Border>
 
-                    <!-- TROOPS (CORREGIDO) -->
+                    <!-- TROOPS -->
                     <Border Grid.Row="0" Grid.Column="1"
                     Background="#111c2b"
                     CornerRadius="12"
@@ -1078,7 +1078,7 @@ Converter={StaticResource BoolToVisibilityConverter}}">
                         </StackPanel>
                     </Border>
 
-                    <!-- SPELLS (CORREGIDO) -->
+                    <!-- SPELLS  -->
                     <Border Grid.Row="1" Grid.Column="0"
                     Background="#111c2b"
                     CornerRadius="12"

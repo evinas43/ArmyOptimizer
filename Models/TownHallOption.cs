@@ -19,6 +19,8 @@ namespace ArmyOptimizer.Models
             get => _image;
             set
             {
+                if (_image == value) return;
+
                 _image = value;
                 OnPropertyChanged();
             }
