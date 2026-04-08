@@ -22,6 +22,7 @@ namespace ArmyOptimizer.ViewModels
         public RelayCommand OptimizeArmyCommand { get; }
         public RelayCommand<ArmySummary> OpenArmyCommand { get; }
         public RelayCommand SeeAllArmiesCommand { get; }
+        public RelayCommand SubscriptionCommand { get; }
 
         public HomeVM(NavigationVM navigation)
         {
@@ -46,7 +47,11 @@ namespace ArmyOptimizer.ViewModels
                 _navigation.CurrentView = new ArmyDetailVM(_navigation, army.Id);
             });
 
-            LoadTokens();
+            SubscriptionCommand = new RelayCommand(_ => {
+                _navigation.CurrentView = new SubscriptionsVM(_navigation);
+            });
+
+            _ = LoadTokens();
             LoadArmies();
         }
 
@@ -57,11 +62,14 @@ namespace ArmyOptimizer.ViewModels
 
             _navigation.CurrentView = new LoginVM(_navigation);
         }
-        private void SeeAllArmys() {
+        private void SeeAllArmys()
+        {
 
             _navigation.CurrentView = new CompleteArmyListVM(_navigation);
 
         }
+
+        //tokens
 
         private async Task LoadTokens()
         {
@@ -69,6 +77,13 @@ namespace ArmyOptimizer.ViewModels
             TokensRemaining = tokens;
             OnPropertyChanged(nameof(TokensRemaining));
         }
+        public async Task RefreshTokens()
+        {
+            var tokens = await _userService.GetTokensAsync();
+            TokensRemaining = tokens;
+            OnPropertyChanged(nameof(TokensRemaining));
+        }
+        //--------------------------------------------------------------
 
 
         private async void LoadArmies()

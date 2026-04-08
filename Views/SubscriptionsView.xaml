@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="ArmyOptimizer.Views.SubscriptionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ArmyOptimizer.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    
+    
+    <Grid Background="#0B1220">
+        
+        <Button Content=" ← Back"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Foreground="Orange"
+                  FontSize="20"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Margin="10"
+                  Command="{Binding BackCommand}"/>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="900">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="💰" Foreground="orange"
+                 FontSize="20"
+                 HorizontalAlignment="Center"
+                 Margin="0,0,0,30"/>
+                <TextBlock Text="Buy Tokens"
+                Foreground="orange"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,30"/>
+            </StackPanel>
+           
+            <!-- Título -->
+            <TextBlock Text="Need More Tokens?"
+                   Foreground="White"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+            <TextBlock Text="Purchase token packs anytime. No subscription required."
+                   Foreground="#A0A7B8"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,30"/>
+
+            <!-- Cards -->
+            <UniformGrid Columns="4" HorizontalAlignment="Center">
+
+                <!-- CARD 1 -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                        <TextBlock Text="1 token" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="€0.99" Style="{StaticResource PriceStyle}"/>
+                        <Button Content="Buy Now"  Command="{Binding BuyTokensCommand}"  CommandParameter="5" Style="{StaticResource DarkButton}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 2 -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                        <TextBlock Text="7 tokens" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="€5.99" Style="{StaticResource PriceStyle}"/>
+                        <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="7" Style="{StaticResource DarkButton}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 3 (destacada) -->
+                <Border Style="{StaticResource HighlightCard}">
+                    <StackPanel>
+                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                        <TextBlock Text="12 tokens" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="€11.99" Style="{StaticResource PriceStyle}"/>
+                        <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="12" Style="{StaticResource OrangeButton}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD 4 -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <TextBlock Text="Unlimited"  FontWeight="Bold" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                        <StackPanel Margin="0,10,0,0">
+                            <TextBlock Text="€17.99" Style="{StaticResource PriceStyle}"/>
+                            <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="999" Style="{StaticResource OrangeButton}"/>
+                    </StackPanel>
+                    </StackPanel>
+                    
+                </Border>
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

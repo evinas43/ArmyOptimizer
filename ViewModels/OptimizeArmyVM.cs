@@ -40,10 +40,10 @@ using ArmyOptimizer.Utilities;
             public bool IsArmyFull => CurrentHousing >= MaxHousing;
             public bool IsSpellFull => CurrentSpellHousing >= MaxSpellHousing;
             public bool IsSiegeFull => CurrentSiegeMachineHousing >= MaxSiegeMachineHousing;
-            //------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------
 
 
-            
+            //TownHall selection command and properties
             public RelayCommand<int> SelectTownHallCommand { get; }
             public bool HasSelectedHero => Heroes?.Any(h => h.IsSelected) == true;
             public bool HasSelectedSpell =>ElixirSpells.Any(s => s.Quantity > 0 ) ||DarkSpells.Any(s => s.Quantity > 0 );
@@ -221,26 +221,31 @@ using ArmyOptimizer.Utilities;
             OnPropertyChanged(nameof(SelectedSiegeMachines));
         }
 
+
+        //this will get the howsing by townhall selected by the user 
+
         private int GetHousingForTownHall(int th)
+        {
+            return th switch
             {
-                return th switch
-                {
-                    7 => 80,
-                    8 => 90,
-                    9 => 100,
-                    10 => 110,
-                    11 => 120,
-                    12 => 130,
-                    13 => 140,
-                    14 => 150,
-                    15 => 160,
-                    16 => 170,
-                    17 => 180,
-                    18 => 340,
-                    _ => 200
-                };
-            }
-            private int GetSpellCapacityForTownHall(int th)
+                7 => 200,
+                8 => 200,
+                9 => 220,
+                10 => 240,
+                11 => 260,
+                12 => 280,
+                13 => 300,
+                14 => 300,
+                15 => 320,
+                16 => 320,
+                17 => 340,
+                18 => 340,
+                _ => 200
+            };
+        }
+
+        //this will get the spell capacity by townhall selected by the user
+        private int GetSpellCapacityForTownHall(int th)
             {
                 return th switch
                 {
@@ -260,7 +265,8 @@ using ArmyOptimizer.Utilities;
                 };
             }
 
-            private int GetSpellsSiegeMachineCapacityForTownHall(int th)
+        //this will get the siege machine capacity by townhall selected by the user from townhall 12 and above the capacity is 3 siege machines, below that there is no siege machine available
+        private int GetSpellsSiegeMachineCapacityForTownHall(int th)
             {
                 return th switch
                 {
@@ -461,7 +467,6 @@ using ArmyOptimizer.Utilities;
 
         public async Task InitializeCollectionsAsync()
         {
-            await Task.Run(() =>
             {
 
                 TownHalls = new ObservableCollection<TownHallOption>
@@ -598,65 +603,64 @@ using ArmyOptimizer.Utilities;
                 {
                     new SelectableSiegeMachine
                     {
-                        Name="Wall Wrecker",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378760/Avatar_Wall_Wrecker_icdrng.png"
+                        Name = "Wall Wrecker",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378760/Avatar_Wall_Wrecker_icdrng.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Battle Blimp",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378758/Avatar_Battle_Blimp_g5wpna.png"
+                        Name = "Battle Blimp",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378758/Avatar_Battle_Blimp_g5wpna.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Stone Slammer",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378757/Avatar_Stone_Slammer_up7cpv.png"
+                        Name = "Stone Slammer",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378757/Avatar_Stone_Slammer_up7cpv.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Siege Barracks",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378761/Avatar_Siege_Barracks_xekb2e.png"
+                        Name = "Siege Barracks",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378761/Avatar_Siege_Barracks_xekb2e.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Log Launcher",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378763/Avatar_Log_Launcher_lmgcyw.png"
+                        Name = "Log Launcher",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378763/Avatar_Log_Launcher_lmgcyw.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Flame Flinger",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378756/Avatar_Flame_Flinger_uok6nn.png"
+                        Name = "Flame Flinger",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378756/Avatar_Flame_Flinger_uok6nn.png"
                     },
 
                     new SelectableSiegeMachine
                     {
-                        Name="Battle Drill",
-                        MachineHousing=1,
-                        ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png"
+                        Name = "Battle Drill",
+                        MachineHousing = 1,
+                        ImageUrl = "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png"
                     }
                 };
-            });
 
-            OnPropertyChanged(nameof(TownHalls));
-            OnPropertyChanged(nameof(Heroes));
-            OnPropertyChanged(nameof(ElixirTroops));
-            OnPropertyChanged(nameof(DarkTroops));
-            OnPropertyChanged(nameof(SuperTroops));
-            OnPropertyChanged(nameof(ElixirSpells));
-            OnPropertyChanged(nameof(DarkSpells));
-            OnPropertyChanged(nameof(SiegeMachines));
+                OnPropertyChanged(nameof(TownHalls));
+                OnPropertyChanged(nameof(Heroes));
+                OnPropertyChanged(nameof(ElixirTroops));
+                OnPropertyChanged(nameof(DarkTroops));
+                OnPropertyChanged(nameof(SuperTroops));
+                OnPropertyChanged(nameof(ElixirSpells));
+                OnPropertyChanged(nameof(DarkSpells));
+                OnPropertyChanged(nameof(SiegeMachines));
 
-            foreach (var hero in Heroes)
+                foreach (var hero in Heroes)
                 {
                     hero.PropertyChanged += (s, e) =>
                     {
@@ -686,7 +690,7 @@ using ArmyOptimizer.Utilities;
                     };
                 }
 
-
+            }
             }
             private void InitializeTroopCommands()
             {

@@ -37,17 +37,23 @@
                     <Border Background="#1f2937"
                         CornerRadius="10"
                         Padding="8,4"
-                        Margin="0,0,20,0">
+                        Margin="0,0,20,0"
+                        Cursor="Hand">  
+
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding SubscriptionCommand}"/>
+                        </Border.InputBindings>
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="👛" Foreground="Gold"
-                       FontSize="14"
-                       Margin="0,0,5,0"/>
+                            <TextBlock Text="👛"
+                               Foreground="Gold"
+                               FontSize="14"
+                               Margin="0,0,5,0"/>
 
                             <TextBlock Text="{Binding TokensRemaining}"
-                       Foreground="{Binding TokenColor}"
-                       FontSize="14"
-                       FontWeight="Bold"/>
+                               Foreground="{Binding TokenColor}"
+                               FontSize="14"
+                               FontWeight="Bold"/>
                         </StackPanel>
                     </Border>
 

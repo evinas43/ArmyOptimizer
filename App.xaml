@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:ArmyOptimizer.ViewModels"
              xmlns:utils="clr-namespace:ArmyOptimizer.Utilities"
              StartupUri="MainWindow.xaml">
-    
+
     <Application.Resources>
 
         <DataTemplate DataType="{x:Type vm:LoginVM}">
@@ -16,7 +16,7 @@
         <DataTemplate DataType="{x:Type vm:RegisterVM}">
             <views:RegisterView/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:HomeVM}">
             <views:HomeView/>
         </DataTemplate>
@@ -28,18 +28,21 @@
         <DataTemplate DataType="{x:Type vm:OptimizeArmyVM}">
             <views:OptimizeArmyView/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:SaveArmyVM}">
             <views:SaveArmyView/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:CompleteArmyListVM}">
             <views:CompleteArmyListView/>
         </DataTemplate>
-        
-        
+
+        <DataTemplate DataType="{x:Type vm:SubscriptionsVM}">
+            <views:SubscriptionsView/>
+        </DataTemplate>
+
         <utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-        
+
 
 
 
@@ -134,7 +137,54 @@
             </Style.Triggers>
 
         </Style>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Width" Value="180"/>
+        </Style>
+
+        <!-- CARD DESTACADA -->
+        <Style x:Key="HighlightCard" TargetType="Border" BasedOn="{StaticResource CardStyle}">
+            <Setter Property="BorderBrush" Value="#F97316"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <!-- TEXTOS -->
+        <Style x:Key="TitleStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="PriceStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,15"/>
+        </Style>
+
+        <!-- BOTONES -->
+        <Style x:Key="DarkButton" TargetType="Button">
+            <Setter Property="Background" Value="#1F2937"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="OrangeButton" TargetType="Button">
+            <Setter Property="Background" Value="#F97316"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
 
     </Application.Resources>
-   
+
 </Application>
