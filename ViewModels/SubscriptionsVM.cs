@@ -1,44 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ArmyOptimizer.Models;
 using ArmyOptimizer.Services;
 using ArmyOptimizer.Utilities;
-namespace ArmyOptimizer.ViewModels
+
+namespace ArmyOptimizer.ViewModels;
+
+public class SubscriptionsVM : ViewModelBase
 {
-    public class SubscriptionsVM : ViewModelBase
+    private readonly NavigationVM _navigation;
+    private readonly SubscriptionsService _subscriptionsService;
+
+    public ObservableCollection<PaymentHistory> Payments { get; set; } = new();
+
+    public RelayCommand BackCommand { get; }
+    public ICommand BuyTokensCommand { get; }
+
+    public SubscriptionsVM(NavigationVM navigation)
     {
-        private readonly NavigationVM _navigation;
-       
-        private readonly SubscriptionsService _subscriptionsService;
-        public RelayCommand BackCommand { get; }
-        public ICommand BuyTokensCommand { get; }
+        _navigation = navigation;
+        _subscriptionsService = new SubscriptionsService(HttpService.Client);
 
-        //constructor
-        public SubscriptionsVM(NavigationVM navigation)
+        BackCommand = new RelayCommand(_ =>
         {
-            _navigation = navigation;
-            _subscriptionsService = new SubscriptionsService();
+            var homeVM = new HomeVM(_navigation);
+            _navigation.CurrentView = homeVM;
+            _ = homeVM.RefreshTokens();
+        });
 
-            BackCommand = new RelayCommand(_ =>
-            {
-                var homeVM = new HomeVM(_navigation);
+        BuyTokensCommand = new RelayCommand(async (param) =>
+        {
+            int tokens = int.Parse(param.ToString());
+            await _subscriptionsService.BuyTokens(tokens);
+        });
 
-                _navigation.CurrentView = homeVM;
+        _ = LoadPayments();
+    }
 
-                _ = homeVM.RefreshTokens();
-            });
+    private async Task LoadPayments()
+    {
+        var data = await _subscriptionsService.GetPayments();
 
-            BuyTokensCommand = new RelayCommand(async (param) =>
-            {
-                int tokens = int.Parse(param.ToString());
-                await _subscriptionsService.BuyTokens(tokens);
-            });
+        Payments.Clear();
 
+        if (data != null)
+        {
+            foreach (var p in data)
+                Payments.Add(p);
         }
-       
     }
 }

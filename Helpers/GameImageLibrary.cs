@@ -72,7 +72,10 @@ namespace ArmyOptimizer.Helpers
             { "Super Witch", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376780/Avatar_Super_Witch_mpdgfd.png" },
             { "Ice Hound", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Ice_Hound_zs2pne.png" },
             { "Super Bowler", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376774/Avatar_Super_Bowler_veuaf3.png" },
-            { "Super Hog Rider", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376778/Avatar_Super_Hog_Rider_lxpiic.png" }
+            { "Super Hog Rider", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376778/Avatar_Super_Hog_Rider_lxpiic.png" },
+            { "Super Miner","https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376770/Avatar_Super_Miner_zvyz0b.png" },
+            { "Super Yeti","https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376782/Avatar_Super_Yeti_cddyyh.png" },
+
         };
 
         //spells
@@ -109,6 +112,7 @@ namespace ArmyOptimizer.Helpers
             { "Battle Drill", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png" }
         };
 
+        //petts
         public static Dictionary<string, string> Pets = new()
         {
             { "Unicorn", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544115/Avatar_Unicorn_hreoji.png" },
@@ -124,5 +128,13 @@ namespace ArmyOptimizer.Helpers
             { "Diggy", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Diggy_o1uvgs.png" },
             { "Frosty", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544109/Avatar_Frosty_gmslhm.png" }
         };
+
+        ////barbarian king habilities
+        //public static Dictionary<string, string> BarbarianKingHabilities = new()
+        //{
+        //    { "Iron Fist", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544417/Avatar_Iron_Fist_1_foh8lq.png" },
+        //    { "Furious Charge", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544417/Avatar_Furious_Charge_1_eb9j6c.png" },
+        //    { "Royal Cloak", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544417/Avatar_Royal_Cloak_1_eb9j6c.png" }
+        //}
     }
 }

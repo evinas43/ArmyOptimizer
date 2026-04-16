@@ -555,23 +555,28 @@ using ArmyOptimizer.Utilities;
             };
 
                 SuperTroops = new ObservableCollection<SelectableTroop>
-            {
-                new SelectableTroop { Name="Super Barbarian", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376772/Avatar_Super_Barbarian_fphb14.png" },
-                new SelectableTroop { Name="Super Archer", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376771/Avatar_Super_Archer_zt7amw.png" },
-                new SelectableTroop { Name="Super Giant", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376777/Avatar_Super_Giant_wetksa.png" },
-                new SelectableTroop { Name="Sneaky Goblin", HousingSpace=3, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376768/Avatar_Sneaky_Goblin_g4kro0.png" },
-                new SelectableTroop { Name="Super Wall Breaker", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376776/Avatar_Super_Wall_Breaker_swt7rd.png" },
-                new SelectableTroop { Name="Rocket Balloon", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376773/Avatar_Rocket_Balloon_try2b2.png" },
-                new SelectableTroop { Name="Super Wizard", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376782/Avatar_Super_Wizard_i32ge7.png" },
-                new SelectableTroop { Name="Super Dragon", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376775/Avatar_Super_Dragon_asqh6m.png" },
-                new SelectableTroop { Name="Inferno Dragon", HousingSpace=15, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376769/Avatar_Inferno_Dragon_frhlmg.png" },
-                new SelectableTroop { Name="Super Minion", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376779/Avatar_Super_Minion_x1ipym.png" },
-                new SelectableTroop { Name="Super Valkyrie", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Super_Valkyrie_ngqc64.png" },
-                new SelectableTroop { Name="Super Witch", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376780/Avatar_Super_Witch_mpdgfd.png" },
-                new SelectableTroop { Name="Ice Hound", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Ice_Hound_zs2pne.png" },
-                new SelectableTroop { Name="Super Bowler", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376774/Avatar_Super_Bowler_veuaf3.png" },
-                new SelectableTroop { Name="Super Hog Rider", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376778/Avatar_Super_Hog_Rider_lxpiic.png" }
-            };
+                    {
+                        new SelectableTroop { Name="Super Barbarian", HousingSpace=5, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376772/Avatar_Super_Barbarian_fphb14.png" },
+                        new SelectableTroop { Name="Super Archer", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376771/Avatar_Super_Archer_zt7amw.png" },
+                        new SelectableTroop { Name="Super Giant", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376777/Avatar_Super_Giant_wetksa.png" },
+                        new SelectableTroop { Name="Sneaky Goblin", HousingSpace=3, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376768/Avatar_Sneaky_Goblin_g4kro0.png" },
+                        new SelectableTroop { Name="Super Wall Breaker", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376776/Avatar_Super_Wall_Breaker_swt7rd.png" },
+                        new SelectableTroop { Name="Rocket Balloon", HousingSpace=8, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376773/Avatar_Rocket_Balloon_try2b2.png" },
+                        new SelectableTroop { Name="Super Wizard", HousingSpace=10, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376782/Avatar_Super_Wizard_i32ge7.png" },
+                        new SelectableTroop { Name="Super Dragon", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376775/Avatar_Super_Dragon_asqh6m.png" },
+                        new SelectableTroop { Name="Inferno Dragon", HousingSpace=15, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376769/Avatar_Inferno_Dragon_frhlmg.png" },
+
+                        new SelectableTroop { Name="Super Miner", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376770/Avatar_Super_Miner_zvyz0b.png" },
+                        new SelectableTroop { Name="Super Yeti", HousingSpace=18, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376782/Avatar_Super_Yeti_cddyyh.png" },
+
+                        new SelectableTroop { Name="Super Minion", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376779/Avatar_Super_Minion_x1ipym.png" },
+                        new SelectableTroop { Name="Super Valkyrie", HousingSpace=20, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Super_Valkyrie_ngqc64.png" },
+                        new SelectableTroop { Name="Super Witch", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376780/Avatar_Super_Witch_mpdgfd.png" },
+                        new SelectableTroop { Name="Ice Hound", HousingSpace=40, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376767/Avatar_Ice_Hound_zs2pne.png" },
+                        new SelectableTroop { Name="Super Bowler", HousingSpace=30, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376774/Avatar_Super_Bowler_veuaf3.png" },
+                        new SelectableTroop { Name="Super Hog Rider", HousingSpace=12, ImageUrl="https://res.cloudinary.com/dibrwiwx5/image/upload/v1774376778/Avatar_Super_Hog_Rider_lxpiic.png" }
+                    };
+
 
 
                 ElixirSpells = new ObservableCollection<SelectableSpell>

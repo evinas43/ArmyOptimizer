@@ -3,98 +3,350 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ArmyOptimizer.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
-    
+
     <Grid Background="#0B1220">
-        
-        <Button Content=" ← Back"
-                  Background="Transparent"
-                  BorderThickness="0"
-                  Foreground="Orange"
-                  FontSize="20"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  Margin="10"
-                  Command="{Binding BackCommand}"/>
-        
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="900">
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="💰" Foreground="orange"
-                 FontSize="20"
-                 HorizontalAlignment="Center"
-                 Margin="0,0,0,30"/>
-                <TextBlock Text="Buy Tokens"
-                Foreground="orange"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- BACK -->
+        <Button Grid.Row="0"
+                Content=" ← Back"
+                Background="Transparent"
+                BorderThickness="0"
+                Foreground="Orange"
                 FontSize="20"
-                HorizontalAlignment="Center"
-                Margin="0,0,0,30"/>
+                HorizontalAlignment="Left"
+                Margin="10"
+                Command="{Binding BackCommand}"/>
+
+        <!-- SCROLL -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ScrollBar">
+
+                                <Grid Background="Transparent">
+
+                                    <!-- Track -->
+                                    <Border Background="#0f1a2a"
+              CornerRadius="5"/>
+
+                                    <Track x:Name="PART_Track"
+             Orientation="Vertical"
+             IsDirectionReversed="True">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.PageDownCommand"
+                            Opacity="0"/>
+                                        </Track.DecreaseRepeatButton>
+
+                                        <Track.Thumb>
+                                            <Thumb>
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="#F59E0B"
+                                  CornerRadius="5"
+                                  Margin="2"/>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.PageUpCommand"
+                            Opacity="0"/>
+                                        </Track.IncreaseRepeatButton>
+
+                                    </Track>
+
+                                </Grid>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
+
+            <StackPanel HorizontalAlignment="Center" Width="900">
+
+                <!-- HEADER -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="💰" Foreground="orange" FontSize="20" Margin="0,0,5,30"/>
+                    <TextBlock Text="Buy Tokens" Foreground="orange" FontSize="20" Margin="0,0,0,30"/>
+                </StackPanel>
+
+                <TextBlock Text="Need More Tokens?"
+                           Foreground="White"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10"/>
+
+                <TextBlock Text="Purchase token packs anytime. No subscription required."
+                           Foreground="#A0A7B8"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"/>
+
+                <!-- CARDS -->
+                <UniformGrid Columns="4" HorizontalAlignment="Center">
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="1 token" Style="{StaticResource TitleStyle}"/>
+                            <TextBlock Text="€0.99" Style="{StaticResource PriceStyle}"/>
+                            <Button Content="Buy Now" Command="{Binding BuyTokensCommand}" CommandParameter="1" Style="{StaticResource DarkButton}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="7 tokens" Style="{StaticResource TitleStyle}"/>
+                            <TextBlock Text="€5.99" Style="{StaticResource PriceStyle}"/>
+                            <Button Content="Buy Now" Command="{Binding BuyTokensCommand}" CommandParameter="7" Style="{StaticResource DarkButton}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource HighlightCard}">
+                        <StackPanel>
+                            <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="12 tokens" Style="{StaticResource TitleStyle}"/>
+                            <TextBlock Text="€11.99" Style="{StaticResource PriceStyle}"/>
+                            <Button Content="Buy Now" Command="{Binding BuyTokensCommand}" CommandParameter="12" Style="{StaticResource OrangeButton}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                            <TextBlock Text="Unlimited" FontWeight="Bold" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
+                            <StackPanel Margin="0,10,0,0">
+                                <TextBlock Text="€17.99" Style="{StaticResource PriceStyle}"/>
+                                <Button Content="Buy Now" Command="{Binding BuyTokensCommand}" CommandParameter="999" Style="{StaticResource OrangeButton}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
+
+                <!-- PAYMENT HISTORY -->
+
+                <ScrollViewer Grid.Row="1"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
+
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Width" Value="10"/>
+                            <Setter Property="Background" Value="Transparent"/>
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollBar">
+
+                                        <Grid Background="Transparent">
+
+                                            <!-- Track -->
+                                            <Border Background="#0f1a2a"
+      CornerRadius="5"/>
+
+                                            <Track x:Name="PART_Track"
+     Orientation="Vertical"
+     IsDirectionReversed="True">
+                                                <Track.DecreaseRepeatButton>
+                                                    <RepeatButton Command="ScrollBar.PageDownCommand"
+                    Opacity="0"/>
+                                                </Track.DecreaseRepeatButton>
+
+                                                <Track.Thumb>
+                                                    <Thumb>
+                                                        <Thumb.Template>
+                                                            <ControlTemplate TargetType="Thumb">
+                                                                <Border Background="#F59E0B"
+                          CornerRadius="5"
+                          Margin="2"/>
+                                                            </ControlTemplate>
+                                                        </Thumb.Template>
+                                                    </Thumb>
+                                                </Track.Thumb>
+
+                                                <Track.IncreaseRepeatButton>
+                                                    <RepeatButton Command="ScrollBar.PageUpCommand"
+                    Opacity="0"/>
+                                                </Track.IncreaseRepeatButton>
+
+                                            </Track>
+
+                                        </Grid>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ScrollViewer.Resources>
+
+                    <StackPanel Margin="0,50,0,0">
+
+                        <!-- HEADER -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="🕙" Foreground="DarkOrange" FontSize="20" Margin="0,0,5,30"/>
+                            <TextBlock Text="Payment History" Foreground="DarkOrange" FontSize="20" Margin="0,0,0,30"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Your Transaction Record"
+                               Foreground="White"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Track all your purchases and subscriptions in one place."
+                               Foreground="#A0A7B8"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,30"/>
+
+                        <Border Background="#0F2438"
+                            CornerRadius="10"
+                            Padding="20">
+
+                            <StackPanel>
+
+                                <!-- HEADER -->
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Date" Foreground="#94A3B8"/>
+                                    <TextBlock Grid.Column="1" Text="Tokens" Foreground="#94A3B8"/>
+                                    <TextBlock Grid.Column="2" Text="Description" Foreground="#94A3B8"/>
+                                    <TextBlock Grid.Column="3" Text="Amount" Foreground="#94A3B8"/>
+                                    <TextBlock Grid.Column="4" Text="Status" Foreground="#94A3B8"/>
+                                </Grid>
+
+                                <!-- LISTA -->
+                                <ItemsControl ItemsSource="{Binding Payments}">
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+
+
+                                            <Border Margin="0,6"
+                                                Padding="10"
+                                                Background="#0B1A2A"
+                                                CornerRadius="6">
+
+                                                <Grid>
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="1.5*"/>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="1*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Column="0"
+                                                           Text="{Binding DateFormatted}"
+                                                           Foreground="#A0AEC0"
+                                                           VerticalAlignment="Center"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                                           Text="{Binding tokens, StringFormat={}{0} tokens}"
+                                                           Foreground="White"
+                                                           VerticalAlignment="Center"/>
+
+                                                    <StackPanel Grid.Column="2"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0,0,10,0">
+
+                                                        <!-- ICONO -->
+                                                        <TextBlock Text="✨"
+                                                       Foreground="Orange"
+                                                       FontSize="14"
+                                                       Margin="0,0,6,0"
+                                                       VerticalAlignment="Center"/>
+
+                                                        <!-- TEXTO -->
+                                                        <TextBlock Text="{Binding description}"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                                    </StackPanel>
+
+                                                    <TextBlock Grid.Column="3"
+                                                           Text="{Binding amount, StringFormat=€{0:F2}}"
+                                                           Foreground="White"
+                                                           VerticalAlignment="Center"/>
+
+
+                                                    <Border Grid.Column="4"
+                                                        Padding="8,3"
+                                                        CornerRadius="12"
+                                                        HorizontalAlignment="Left">
+
+                                                        <Border.Style>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="Background" Value="#374151"/>
+
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding status}" Value="completed">
+                                                                        <Setter Property="Background" Value="#16A34A"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding status}" Value="pending">
+                                                                        <Setter Property="Background" Value="#EAB308"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding status}" Value="failed">
+                                                                        <Setter Property="Background" Value="#DC2626"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding status}" Value="refunded">
+                                                                        <Setter Property="Background" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+
+                                                        <TextBlock Text="{Binding status}"
+                                                               Foreground="White"
+                                                               FontSize="11"
+                                                               Margin="5,0"/>
+                                                    </Border>
+
+                                                </Grid>
+                                            </Border>
+
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                </ItemsControl>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
-           
-            <!-- Título -->
-            <TextBlock Text="Need More Tokens?"
-                   Foreground="White"
-                   FontSize="32"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,10"/>
-
-            <TextBlock Text="Purchase token packs anytime. No subscription required."
-                   Foreground="#A0A7B8"
-                   FontSize="14"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,30"/>
-
-            <!-- Cards -->
-            <UniformGrid Columns="4" HorizontalAlignment="Center">
-
-                <!-- CARD 1 -->
-                <Border Style="{StaticResource CardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
-                        <TextBlock Text="1 token" Style="{StaticResource TitleStyle}"/>
-                        <TextBlock Text="€0.99" Style="{StaticResource PriceStyle}"/>
-                        <Button Content="Buy Now"  Command="{Binding BuyTokensCommand}"  CommandParameter="5" Style="{StaticResource DarkButton}"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- CARD 2 -->
-                <Border Style="{StaticResource CardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
-                        <TextBlock Text="7 tokens" Style="{StaticResource TitleStyle}"/>
-                        <TextBlock Text="€5.99" Style="{StaticResource PriceStyle}"/>
-                        <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="7" Style="{StaticResource DarkButton}"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- CARD 3 (destacada) -->
-                <Border Style="{StaticResource HighlightCard}">
-                    <StackPanel>
-                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
-                        <TextBlock Text="12 tokens" Style="{StaticResource TitleStyle}"/>
-                        <TextBlock Text="€11.99" Style="{StaticResource PriceStyle}"/>
-                        <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="12" Style="{StaticResource OrangeButton}"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- CARD 4 -->
-                <Border Style="{StaticResource CardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💰" Foreground="orange" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                        <TextBlock Text="Unlimited"  FontWeight="Bold" Foreground="orange" FontSize="20" HorizontalAlignment="Center"/>
-                        <StackPanel Margin="0,10,0,0">
-                            <TextBlock Text="€17.99" Style="{StaticResource PriceStyle}"/>
-                            <Button Content="Buy Now" Command="{Binding BuyTokensCommand}"  CommandParameter="999" Style="{StaticResource OrangeButton}"/>
-                    </StackPanel>
-                    </StackPanel>
-                    
-                </Border>
-            </UniformGrid>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

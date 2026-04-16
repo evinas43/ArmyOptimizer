@@ -68,7 +68,7 @@ namespace ArmyOptimizer.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ArmyOptimizer;V1.0.0.0;component/views/registerview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ArmyOptimizer;component/views/registerview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\RegisterView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

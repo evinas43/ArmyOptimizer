@@ -1,12 +1,22 @@
 ﻿using System.Diagnostics;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using ArmyOptimizer.Models;
 
 namespace ArmyOptimizer.Services
 {
     public class SubscriptionsService
     {
+        private readonly HttpClient _client;
+
+
+        public SubscriptionsService(HttpClient client)
+        {
+            _client = client;
+        }
+
         public async Task BuyTokens(int tokens)
         {
             var json = new StringContent(
@@ -15,8 +25,8 @@ namespace ArmyOptimizer.Services
                 "application/json"
             );
 
-            var response = await HttpService.Client.PostAsync(
-                "api/payments/create-session",
+            var response = await _client.PostAsync(
+                "api/Payments/create-session",
                 json
             );
 
@@ -30,12 +40,20 @@ namespace ArmyOptimizer.Services
                         .GetProperty("url")
                         .GetString();
 
-            // 🔥 abrir navegador
             Process.Start(new ProcessStartInfo
             {
                 FileName = url,
                 UseShellExecute = true
             });
+        }
+        public async Task <List<PaymentHistory?>> GetPayments() 
+        {
+            var response = await _client.GetAsync("api/Payments/history");
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<List<PaymentHistory>>();
         }
     }
 }
