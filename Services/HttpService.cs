@@ -20,7 +20,7 @@ namespace ArmyOptimizer.Services
                 {
                     _client = new HttpClient
                     {
-                        BaseAddress = new Uri("http://ArmyOptimizer.somee.com/publish/")
+                        BaseAddress = new Uri("https://ArmyOptimizer.somee.com/publish/")
                     };
                 }
 
