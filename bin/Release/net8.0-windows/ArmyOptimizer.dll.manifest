@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ArmyOptimizer.exe" version="1.0.0.9" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ArmyOptimizer.exe" version="1.0.0.10" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -62,13 +62,13 @@
       <dsig:DigestValue>WxLKFJhxglA2BXfcZ3ekUl9ElTw7pRHnQ9KI4Zcasto=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ArmyOptimizer.dll" size="1346560">
+  <file name="ArmyOptimizer.dll" size="1350656">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>zwxIwb9zx7j/lVjNixI/opG/sij45c/OnHQzMtyjO4E=</dsig:DigestValue>
+      <dsig:DigestValue>acu+CCxILfx/3J9AYAZbRm8iUIXF7XfzPjiGEEkarl8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ArmyOptimizer.dll.config" size="294">
@@ -86,7 +86,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UABanMCeADpt7ysxeEU4px6uQ40sRqA9kF2eoP9lXNQ=</dsig:DigestValue>
+      <dsig:DigestValue>5qsu2tbjWPG9uJIHxB93UfoMgq9gu41/8FJhoyTtdVQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ArmyOptimizer.runtimeconfig.json" size="515">

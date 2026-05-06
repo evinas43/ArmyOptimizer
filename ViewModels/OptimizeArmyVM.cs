@@ -1090,7 +1090,7 @@ using ArmyOptimizer.Utilities;
 
                 if (result == null)
                 {
-                    MessageBox.Show("Optimization failed");
+                    ToastService.Instance.Show("Optimization failed, try again", "error");
                     return;
                 }
 

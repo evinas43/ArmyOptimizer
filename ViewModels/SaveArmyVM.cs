@@ -15,6 +15,7 @@ namespace ArmyOptimizer.ViewModels
     {
         private readonly NavigationVM _navigation;
         private readonly ArmyService _armyService;
+        private readonly ToastService _toastService;
 
         public string Name { get; set; }
         public string Description { get; set; }
@@ -34,6 +35,7 @@ namespace ArmyOptimizer.ViewModels
         {
             _navigation = navigation;
             _armyService = new ArmyService(HttpService.Client);
+            _toastService = ToastService.Instance;
 
             ArmyData = army;
             _previousVM = previousVM;
@@ -48,6 +50,17 @@ namespace ArmyOptimizer.ViewModels
 
         private async Task Save()
         {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                _toastService.Show("Army name is required", "warning");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Description))
+            {
+                _toastService.Show("Army description is required", "warning");
+                return;
+            }
 
             var request = new
             {
@@ -89,9 +102,10 @@ namespace ArmyOptimizer.ViewModels
 
             if (result == null)
             {
-                MessageBox.Show("Error saving army", "error"); 
+                _toastService.Show("Error saving army", "error");
                 return;
             }
+
             _navigation.CurrentView = new HomeVM(_navigation);
         }
     }

@@ -44,7 +44,8 @@ namespace ArmyOptimizer.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                MessageBox.Show($"ERROR API:\n{content}");
+                MessageBox.Show($"ERROR API:{content}");
+                Console.WriteLine($"ERROR API:{content}");
                 return null;
             }
 
