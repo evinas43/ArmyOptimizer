@@ -112,7 +112,7 @@ namespace ArmyOptimizer.Helpers
             { "Battle Drill", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774378755/Avatar_Battle_Drill_c3aa3g.png" }
         };
 
-        //petts
+        //pets
         public static Dictionary<string, string> Pets = new()
         {
             { "Unicorn", "https://res.cloudinary.com/dibrwiwx5/image/upload/v1774544115/Avatar_Unicorn_hreoji.png" },

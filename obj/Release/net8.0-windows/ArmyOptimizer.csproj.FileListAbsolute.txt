@@ -42,6 +42,10 @@ C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\SaveArmyView.baml
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\OptimizeArmyView.g.cs
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\SaveArmyView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\SubscriptionsView.baml
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\CompleteArmyListView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\SubscriptionsView.g.cs
+C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\Views\CompleteArmyListView.baml
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\ArmyOptimizer.dll.manifest
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\bin\Release\net8.0-windows\ArmyOptimizer.application
 C:\Users\faeer\OneDrive\Escritorio\ArmyOptimizer_APP\ArmyOptimizer\ArmyOptimizer\obj\Release\net8.0-windows\ArmyOptimizer.dll.manifest

@@ -27,6 +27,9 @@ namespace ArmyOptimizer.Models
                 OnPropertyChanged();
             }
         }
+        //townhall requirment to see the troop 
+        public int RequiredTownHall { get; set; }
+
 
         private bool _isSelected;
         public bool IsSelected

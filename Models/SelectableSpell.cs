@@ -43,6 +43,8 @@ namespace ArmyOptimizer.Models
                 OnPropertyChanged(nameof(TotalSpellHousing));
             }
         }
+        //townhall requirment to see the troop 
+        public int RequiredTownHall { get; set; }
 
         public int TotalSpellHousing => Quantity * SpellingHousing;
 

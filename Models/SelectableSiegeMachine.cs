@@ -42,6 +42,8 @@ namespace ArmyOptimizer.Models
                 OnPropertyChanged(nameof(TotalHousing));
             }
         }
+        //townhall requirment to see the troop 
+        public int RequiredTownHall { get; set; }
 
         public int TotalHousing => Quantity * MachineHousing;
 

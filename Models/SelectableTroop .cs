@@ -26,6 +26,8 @@ namespace ArmyOptimizer.Models
                 OnPropertyChanged();
             }
         }
+        //townhall requirment to see the troop 
+        public int RequiredTownHall { get; set; }
 
         private int _quantity;
         public int Quantity
