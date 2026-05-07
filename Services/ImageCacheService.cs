@@ -28,7 +28,7 @@ namespace ArmyOptimizer.Services
             bitmap.StreamSource = stream;
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.EndInit();
-            bitmap.Freeze(); // ✅ ahora sí seguro
+            bitmap.Freeze();
 
             _cache[url] = bitmap;
 
