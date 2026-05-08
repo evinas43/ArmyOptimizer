@@ -1,0 +1,754 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ArmyOptimizer — Manual d’Usuari</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+	background: linear-gradient(
+		180deg,
+		#111214 0%,
+		#15171b 35%,
+		#111214 100%
+	);
+	background-attachment: fixed;
+	color: #e6e6e6;
+
+	min-height: 100vh;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3574fbb9-c90a-80dc-aee3-f4ee0eb2a019" class="page sans"><header><img class="page-cover-image" src="bannerArmyOptimizer%201.png" style="object-position:center 32.06%"/><h1 class="page-title" dir="auto">ArmyOptimizer — Manual d’Usuari</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h1 id="44c3a054-a729-463c-94d3-e966c71a4781" class="">⚔️ ArmyOptimizer</h1></div><div style="display:contents" dir="auto"><h2 id="c03f1c69-4b57-4004-a86a-042d6b48cbd7" class="">Manual d’Usuari</h2></div><div style="display:contents" dir="auto"><h3 id="afa3e8b5-463e-4cb9-8fbd-b920ab11805b" class="">Planifica el teu exèrcit perfecte</h3></div><div style="display:contents" dir="auto"><hr id="cb158835-ae63-4b09-96d5-a317c2ed29b0"/></div><div style="display:contents" dir="auto"><p id="7878be20-c0ca-49b4-b925-7140a6f41e24" class="">👤 Autor: Èric Viñas  </p></div><div style="display:contents" dir="auto"><p id="1da44460-3c2b-4c58-8957-251f50517713" class="">📅 Data: 04/05/2026 </p></div><div style="display:contents" dir="auto"><p id="e43ca9e8-1f84-4b8a-9066-6f19cfc9fb77" class="">📌 Versió: 1.0</p></div><div style="display:contents" dir="auto"><hr id="87136d1a-0adf-4b07-9849-09c872b1718d"/></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-80bd-9ed8-c13117eca2f7" class="image"><a href="bannerArmyOptimizer.png"><img style="width:709.96875px" src="bannerArmyOptimizer.png"/></a></figure></div><div style="display:contents" dir="auto"><hr id="96435d36-cc9d-44ef-b868-08408bd51283"/></div><div style="display:contents" dir="auto"><h1 id="889c9201-560b-4f87-b857-87a15b026b41" class="">📘 1. Introducció</h1></div><div style="display:contents" dir="auto"><h3 id="8432fbce-9aa4-4e00-80b4-d5690f9009df" class="">🎯 Què és ArmyOptimizer</h3></div><div style="display:contents" dir="auto"><p id="3a584825-11e9-4ff4-9d0a-06f5998d01e4" class="">ArmyOptimizer és una aplicació de planificació d’exèrcits pensada per <strong>construir, validar i optimitzar</strong> una composició completa segons el teu <strong>Town Hall</strong>, la capacitat disponible i l’objectiu de l’atac.</p></div><div style="display:contents" dir="auto"><p id="34105b25-29fa-4cd7-b4d8-0857f264f765" class="">[IMATGE: 03_home.png]</p></div><div style="display:contents" dir="auto"><p id="582ebc0b-bfbe-4a87-ba0e-f10752504736" class="">Descripció: Pantalla principal amb accés ràpid a crear un exèrcit, saldo de tokens i últimes configuracions.</p></div><div style="display:contents" dir="auto"><p id="3584fbb9-c90a-80d7-bb2b-d19165ac1085" class=""> </p></div><div style="display:contents" dir="auto"><h3 id="0cc4f064-779f-4b4c-afdd-bb7df4edc36b" class="">✅ Objectiu del manual</h3></div><div style="display:contents" dir="auto"><p id="ad93149b-4e36-4086-af9e-b1d0308f503a" class="">Aquest document t’acompanya com a persona usuària des de zero per:</p></div><div style="display:contents" dir="auto"><ol type="1" id="8ff8eeef-e905-46a1-9869-64de526af666" class="numbered-list" start="1"><li>Crear un compte i iniciar sessió.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7dcdd9be-5291-453f-b432-abe38fceb39c" class="numbered-list" start="2"><li>Entendre la pantalla principal i la navegació.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a1622ba8-c4a8-4b1c-a80e-3acf926422cb" class="numbered-list" start="3"><li>Seleccionar Town Hall i construir l’exèrcit (tropes, encanteris i setge).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="919f7839-f1a1-420a-965c-4e6d137211f0" class="numbered-list" start="4"><li>Revisar el resum, optimitzar i desar configuracions.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="47479b7a-c2b7-4dfa-a622-e3f5c7fa52d1" class="numbered-list" start="5"><li>Gestionar tokens i pagaments de manera segura.</li></ol></div><div style="display:contents" dir="auto"><p id="c3a494ab-a374-40e7-b4c0-6cf84a1516f9" class="">💡 Consell: L’experiència és molt més fluida si segueixes l’ordre del flux (Town Hall → tropes → encanteris → setge → resum → optimització).</p></div><div style="display:contents" dir="auto"><hr id="cd9c6a63-0ce7-4d2f-9918-6a9cb1fdadd5"/></div><div style="display:contents" dir="auto"><h1 id="b124d1b9-2370-4af9-a38c-0084c0f78825" class="">🔐 2. Registre i Login</h1></div><div style="display:contents" dir="auto"><h3 id="4f74ab83-2d6c-4fbd-8729-b00277bdd020" class="">📝 Crear compte</h3></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-8026-b2e9-d398efb2bac1" class="image"><a href="e012c0f6-04a4-43f3-8ca4-2a2af0dab7de.png"><img style="width:394.214463840399px" src="e012c0f6-04a4-43f3-8ca4-2a2af0dab7de.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="7e5e78ec-d44c-415a-ade7-0b7a22e289c7" class="">Descripció: Formulari de registre d’usuari amb camps principals </p></div><div style="display:contents" dir="auto"><p id="8944df1f-aa45-4fd8-9f15-3e718bb561c4" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="d7589281-93af-4add-a5a1-f1527289490c" class="numbered-list" start="1"><li>Obre <strong>Registre</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3d3da16a-bee9-47e6-88c6-369ddf2dc858" class="numbered-list" start="2"><li>Escriu el teu <strong>nom d’usuar</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3574fbb9-c90a-80b3-bcd1-e2c1751b9d52" class="numbered-list" start="3"><li>Introdueix la teva contrasenya</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3574fbb9-c90a-80ae-850e-d7dd6165e5a7" class="numbered-list" start="4"><li>Confirma la teva contrasenya</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="ddc7fe21-c298-4f0b-8141-21e09b305387" class="numbered-list" start="5"><li>Prem <strong>Create Account</strong>.</li></ol></div><div style="display:contents" dir="auto"><p id="0e2cf5cb-3d8c-4139-92f4-2cb426b146cd" class="">💡 Consell: Fes servir una contrasenya de la que et puguis enrrecordar,al ser una v1.0 encara no hi ha implementat el sistema de recuperacions de contrasenyes. En cas d’una perdua de contrasenya es recomanaria contactar amb suport <a href="mailto:evinas.dam@institutcampalans.net">evinas.dam@institutcampalans.net</a>.<br/>Properament s’implementara el sistema de gestió de contrasenyes.</p></div><div style="display:contents" dir="auto"><h3 id="8bcdc0f4-c20c-4c04-923f-3eb669e103b1" class="">🔑 Iniciar sessió</h3></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-80e4-ae0d-dfc6ca58d3ad" class="image"><a href="5a985ca4-d801-403b-9400-14345c95e25c.png"><img style="width:380.6691449814126px" src="5a985ca4-d801-403b-9400-14345c95e25c.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="26e52510-a1f2-4876-ba02-b0fc30ec063e" class="">Descripció: Pantalla de login amb usuari i contrasenya.</p></div><div style="display:contents" dir="auto"><p id="20473cf5-6fcb-460a-85c8-487d8f818783" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="c88b0540-7d86-4b55-90a9-b9726b09e4ab" class="numbered-list" start="1"><li><strong>Accedir Login </strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="590d9d4f-c78d-4d9c-bccf-0640c25e3db8" class="numbered-list" start="2"><li>Introdueix <strong>usuari </strong>i <strong>contrasenya</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7226641c-2f66-4474-91c4-4913f908ac90" class="numbered-list" start="3"><li>Prem <strong>Iniciar sessió</strong>.</li></ol></div><div style="display:contents" dir="auto"><p id="94f62773-8c2c-441f-879c-d34c8faf3757" class="">💡 Consell: Si canvies de dispositiu, assegura’t de recordar l’usuari i contrasenya exacte. En cas d’una perdua de contrasenya es recomanaria contactar amb suport <a href="mailto:evinas.dam@institutcampalans.net">evinas.dam@institutcampalans.net</a></p></div><div style="display:contents" dir="auto"><p id="3584fbb9-c90a-80e0-a875-c1b58dcdd493" class=""><br/><br/></p></div><div style="display:contents" dir="auto"><hr id="35db7e3f-57a9-4396-8f4a-c65b60fe8686"/></div><div style="display:contents" dir="auto"><h1 id="3e2372d0-6747-4b9d-a3ff-b45b0840e0a8" class="">🏠 3. Pantalla principal</h1></div><div style="display:contents" dir="auto"><h3 id="ec3fd6b3-75bc-46d6-aa00-8326a36c31ae" class="">🧭 Què veuràs al dashboard</h3></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-8024-bbfe-e3b2bc64a54f" class="image"><a href="home.png"><img style="width:709.96875px" src="home.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="b9348c43-1330-44e3-a6c5-e7833ead9107" class="">Elements habituals:</p></div><div style="display:contents" dir="auto"><ul id="f0653379-e5aa-4461-8132-0908ef29c9e0" class="bulleted-list"><li style="list-style-type:disc"><strong>Barra superior</strong>: perfil, tokens, tencar sessió.</li></ul></div><div style="display:contents" dir="auto"><ul id="7797939b-2033-4e9d-a7bd-48b7b2f3f526" class="bulleted-list"><li style="list-style-type:disc"><strong>Accions ràpides</strong>: Optimitzar un army, Últims e<em>xèrcits desats,Visualitzar llistat d’ </em>e<em>xèrcits complet</em>.</li></ul></div><div style="display:contents" dir="auto"><h3 id="2d7ff3d1-98f9-4447-afd5-127ec6041dd1" class="">🗂️ Navegació recomanada</h3></div><div style="display:contents" dir="auto"><p id="b92aa2aa-b08f-4da3-aa49-6cfddee62b0d" class="">📌 Passos (flux ideal):</p></div><div style="display:contents" dir="auto"><ol type="1" id="7ce162dc-7dd3-4bde-8d2a-0e16964cf8db" class="numbered-list" start="1"><li>Prem <strong>Nou exèrcit</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="738ebec6-6c93-45a7-b75b-fdde94fb6ee2" class="numbered-list" start="2"><li>Selecciona <strong>Town Hall</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="ef36f5bf-4fe1-4da0-9346-99b26623b707" class="numbered-list" start="3"><li>Afegeix <strong>tropes</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="88cc873f-2055-4b6e-809f-ea99dc800252" class="numbered-list" start="4"><li>Afegeix <strong>encantaments</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="ea052787-9342-4d87-aa83-4d61c48cb5b9" class="numbered-list" start="5"><li>Tria <strong>màquina bèl·lica</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="0263fc39-4227-4fa6-87dd-cefc733a00e1" class="numbered-list" start="6"><li>Revisa les dades al <strong>resum d’</strong>e<em>xèrcit</em>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="4139f619-aee0-46e5-8e90-0120faf498f5" class="numbered-list" start="7"><li>Executa <strong>optimització</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="8f3309c7-2641-4d0a-9004-bc48b2f20674" class="numbered-list" start="8"><li><strong>Desa</strong> l’exercit.</li></ol></div><div style="display:contents" dir="auto"><hr id="ae3f3d8e-b7b3-403e-8308-fa78eafd1921"/></div><div style="display:contents" dir="auto"><h1 id="549174b9-96cf-4e85-b90d-7945550747bb" class="">🏰 4. Selecció de Town Hall</h1></div><div style="display:contents" dir="auto"><h3 id="1ffb79e1-63cd-4c87-a3e1-2c967aa89f5c" class="">🏷️ Per què és el primer pas</h3></div><div style="display:contents" dir="auto"><p id="663ce9a2-6222-4a0a-8666-e4775a634ef0" class="">El Town Hall defineix:</p></div><div style="display:contents" dir="auto"><ul id="91f9fc9c-0dbf-44ab-bc22-ba40a499f654" class="bulleted-list"><li style="list-style-type:disc">Opcions disponibles (tropes, encanteris i setge)</li></ul></div><div style="display:contents" dir="auto"><ul id="5a115ed1-6624-47bf-8cf4-6e410ac6f233" class="bulleted-list"><li style="list-style-type:disc">Límits i regles de compatibilitat</li></ul></div><div style="display:contents" dir="auto"><ul id="c9a4dea1-e7fe-4322-9f3d-f2765d1e20e4" class="bulleted-list"><li style="list-style-type:disc">Recomanacions i plantilles suggerides</li></ul></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-807a-b130-e7580da8294b" class="image"><a href="TownhallSelection.png"><img style="width:709.984375px" src="TownhallSelection.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="fde5ca92-608f-4243-8c3a-767d74d9a4a5" class="">Descripció: Selector de Town Hall amb diferents nivells i confirmació abans de continuar.</p></div><div style="display:contents" dir="auto"><p id="c79b529a-1062-4b95-b334-a25bdc2c6472" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="c6ddc024-1c37-4cb7-a28c-f8c336580cd0" class="numbered-list" start="1"><li>Entra a <strong>Town Hall</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="d0c565da-ed26-4d21-bc81-68bd184f1f9b" class="numbered-list" start="2"><li>Tria el teu nivell (p. ex. TH10, TH11, TH12…).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a57ca509-30f6-4568-b6bc-0f0d5502a5b1" class="numbered-list" start="3"><li>Confirma la selecció per carregar el catàleg compatible.</li></ol></div><div style="display:contents" dir="auto"><hr id="6823d17e-9267-4b6e-85d3-3e264bb3e95c"/></div><div style="display:contents" dir="auto"><h1 id="457666e9-73f4-498c-9bc6-12848db76ad4" class="">⚔️ 5. Selecció de tropes</h1></div><div style="display:contents" dir="auto"><h3 id="ee6ce31d-1e31-4202-b85d-b6e69450dd03" class="">🪖 Construir la base de l’exèrcit</h3></div><div style="display:contents" dir="ltr"><figure id="3574fbb9-c90a-8039-addf-eeb9b0a84ee2" class="image"><a href="TroopSelector.png"><img style="width:709.96875px" src="TroopSelector.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="15a251a3-07c4-492d-817f-e6f83cc05722" class="">Descripció: Llista de herois, tropes amb quantitats, cost i indicador de capacitat utilitzada.</p></div><div style="display:contents" dir="auto"><p id="fa6dfe43-9297-467c-9a10-e06763224255" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="e6c2215c-bf31-41e7-8b09-ee0fb39a99f6" class="numbered-list" start="1"><li>Obre <strong>Tropes</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="0a02d9a6-695c-4bae-a2fc-9c1e0acad61c" class="numbered-list" start="2"><li>Afegeix unitats amb <strong>+</strong> (o selector ràpid).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="f25b3aae-e5d6-4408-befe-3684f2a4a1ee" class="numbered-list" start="3"><li>Ajusta quantitats fins a una capacitat eficient.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="1d65b4bd-f7bd-4e5c-a72a-244a9b1408cb" class="numbered-list" start="4"><li>Revisa el repartiment per rols (tanc / dany / suport).</li></ol></div><div style="display:contents" dir="auto"><h3 id="4a8e47e3-a9b1-4a20-ac2a-7a0e340f6382" class="">🧩 Criteris pràctics de selecció</h3></div><div style="display:contents" dir="auto"><ul id="70ae0fe5-cad2-4b92-962e-e0c31fbe72db" class="bulleted-list"><li style="list-style-type:disc"><strong>Entrada</strong>: unitats resistents per obrir camí.</li></ul></div><div style="display:contents" dir="auto"><ul id="3ad257b3-590a-4d41-850a-3fa1d7be9ab8" class="bulleted-list"><li style="list-style-type:disc"><strong>Dany principal</strong>: unitats que fan el gruix del dps.</li></ul></div><div style="display:contents" dir="auto"><ul id="407169cc-5dad-4e67-8561-9a5d1de65c77" class="bulleted-list"><li style="list-style-type:disc"><strong>Suport</strong>: unitats/efectes que asseguren consistència.</li></ul></div><div style="display:contents" dir="auto"><p id="cc02779e-1f70-41d9-bbab-29e737d6e5f4" class="">💡 Consell: No omplis només amb una única tropa. Un exèrcit “massa monocultiu” és fràgil davant defensas específiques.</p></div><div style="display:contents" dir="auto"><hr id="a80eeab1-f287-4e75-bf8c-81c6cd273091"/></div><div style="display:contents" dir="auto"><h1 id="91ab0c22-27e6-463b-b610-3bf6a91979fe" class="">🧪 6. Selecció d&#x27;encanteris</h1></div><div style="display:contents" dir="auto"><h3 id="31decc6a-5d3a-47cd-aeb0-522df8f373a5" class="">✨ Afina el control de l’atac</h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-80ca-bf40-c2815fa83c37" class="image"><a href="SpellStep.png"><img style="width:703.96875px" src="SpellStep.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="31db2f1d-7acb-455f-b576-521f786f9e78" class="">Descripció: Selecció d’encanteris amb espais totals, recomanacions i quantitats.</p></div><div style="display:contents" dir="auto"><p id="0b99fdec-947e-4c9c-88a2-6805527f443e" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="1447480b-c496-4957-8549-18c09dce0941" class="numbered-list" start="1"><li>Entra a <strong>Encanteris</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="e515c75a-0242-4e3f-b37e-da2ad7fa64dc" class="numbered-list" start="2"><li>Tria encanteris segons objectiu (dany, supervivència, control).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="bb81dc3e-3251-4c35-98b6-6079ccac5335" class="numbered-list" start="3"><li>Assegura’t de respectar els <strong>espais disponibles</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="b0141624-7692-44d4-8a75-2f9cc1b497a3" class="numbered-list" start="4"><li>Confirma la selecció.</li></ol></div><div style="display:contents" dir="auto"><h3 id="4c35a225-15c6-40c0-bba3-fc4a78b3f4ac" class="">🎛️ Guia ràpida (decisions típiques)</h3></div><div style="display:contents" dir="auto"><ul id="464da43b-478a-473b-9f95-3ecc69ef04c0" class="bulleted-list"><li style="list-style-type:disc">Si vols <strong>accelerar</strong> una fase: prioritzar encanteris d’acceleració.</li></ul></div><div style="display:contents" dir="auto"><ul id="dcc39d2d-be13-4957-9ddf-17d50697a5cc" class="bulleted-list"><li style="list-style-type:disc">Si busques <strong>seguretat</strong>: incloure encanteris defensius,com la congelació.</li></ul></div><div style="display:contents" dir="auto"><ul id="8abde6c4-0b4e-4365-9b67-cffa05b7b69f" class="bulleted-list"><li style="list-style-type:disc">Si necessites <strong>control</strong>: optar per encanteris de distraccio o que provoquin “stun” a les defençes.</li></ul></div><div style="display:contents" dir="auto"><hr id="5b23e19c-23ae-4273-8a21-7f1a5b2f10d6"/></div><div style="display:contents" dir="auto"><h1 id="fb9588dd-9c99-46cd-95a9-d1490a2e6dd7" class="">🏹 7. Selecció de màquines bel·liques</h1></div><div style="display:contents" dir="auto"><h3 id="4a7053fb-e94d-42b7-9e72-a16e84e2ede5" class="">🧨 Tria l’equipament </h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-80dd-b366-ce224a98f56c" class="image"><a href="SiegeStep.png"><img style="width:703.96875px" src="SiegeStep.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="b18d119d-c7a7-49fd-8d6e-8b1ab22863f2" class="">Descripció: Pantalla bel·liques amb opcions, descripcions d’ús i configuració associada.</p></div><div style="display:contents" dir="auto"><p id="2f2987ae-9a07-4102-9893-5afd1082660b" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="58b03f2b-d741-4117-a1d3-34dcd5644d7d" class="numbered-list" start="1"><li>Obre <strong>Setge</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a9058f04-0f7f-4690-be21-bf8883fa04f3" class="numbered-list" start="2"><li>Tria la màquina segons el teu pla (entrada, suport o pressió).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="e8932949-adfc-4731-b6fb-f093a147cbf4" class="numbered-list" start="3"><li>El contingut intern serán les tropes que t’haigin donat els teus membres del clan si pertanys en pertanys a algún.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="9db03a8e-3c44-4c87-8022-eec02dcac113" class="numbered-list" start="4"><li>Confirma per passar a la  vista resumida.</li></ol></div><div style="display:contents" dir="auto"><p id="e8739ec3-bce0-4b8a-8fe0-8a3f93000834" class="">💡 Consell: Escull la maquina pensant en el “primer minut” de l’atac: és on més condiciona l’entrada. Pots portar fins a 3 maquines per diferents tipus d’atac segons la defensa que tingui l’enemic.</p></div><div style="display:contents" dir="auto"><hr id="7729d2a5-a74a-4bcc-9458-6fdec6b3d073"/></div><div style="display:contents" dir="auto"><h1 id="30e50b14-a84b-4a50-9d2a-0ce3712b774d" class="">📊 8. Resum de l’exèrcit</h1></div><div style="display:contents" dir="auto"><h3 id="967f06ae-fc13-4d84-986e-5bc71053ec1d" class="">🧾 Validació final abans d’optimitzar o desar</h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-80c0-9209-d90ca295ca90" class="image"><a href="Summary.png"><img style="width:703.96875px" src="Summary.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="a5fcc2a9-c060-40e2-ac2b-4fe7216933a5" class="">Descripció: Resum complet amb llistes (herois/tropes/encanteris/Maquines bel·liques) i espai ocupat complet.</p></div><div style="display:contents" dir="auto"><p id="3daaf0f7-78ae-4f43-8a92-6c2314379147" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="98a3d29d-76ab-4826-a4b7-c4bd145a1e3c" class="numbered-list" start="1"><li>Revisa que el <strong>Town Hall</strong> sigui correcte.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a6a898a5-6294-45ed-8d54-85543490adb7" class="numbered-list" start="2"><li>Confirma que has triat tot correctament.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="cbd3d4e8-2a3c-4340-8666-1addd9841a92" class="numbered-list" start="3"><li>Verifica capacitat i cost total.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="8cdec16f-4905-47f5-ae75-a7697309c971" class="numbered-list" start="4"><li>Decideix: <strong>Optimitzar</strong> o Sortir.</li></ol></div><div style="display:contents" dir="auto"><h3 id="eee9530e-dc36-4569-b3be-7074675615bb" class="">✅ Checklist ràpida</h3></div><div style="display:contents" dir="auto"><ul id="add78336-b7b1-4b95-ac5a-367ec8dc7bb3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">TH seleccionat i coherent</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="eca8f273-814f-49a5-9eb0-4cb68739f133" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Tropes completes</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="0672353d-538d-4caa-81de-75fe74bb64fe" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Encanteris complets</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="c14ef226-2583-403f-9c0a-bb5c1e7139b5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Maquina bel·lica seleccionada</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><hr id="a53bd40f-d808-41b5-840f-b971a183fee3"/></div><div style="display:contents" dir="auto"><h1 id="34c791c9-9319-41b2-84ee-4e01d9aa1fb5" class="">🧠 9. Optimització</h1></div><div style="display:contents" dir="auto"><h3 id="90492766-45c7-4491-b62f-71518eb2aa68" class="">⚙️ Què fa exactament l’optimització</h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-800f-a658-f6e426f0eb7d" class="image"><a href="OptimizedArmy.png"><img style="width:703.96875px" src="OptimizedArmy.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="9be986c7-02ec-4e02-9181-8928fa9fe5a0" class="">Descripció: Resultat d’optimització amb comparació abans/després i canvis suggerits.</p></div><div style="display:contents" dir="auto"><p id="74043bf6-6622-46a6-be49-a6887d6c9ef8" class="">ArmyOptimizer pot optimitzar segons criteris com:</p></div><div style="display:contents" dir="auto"><ul id="f16c6195-d957-4515-ba49-17c5ce651fc4" class="bulleted-list"><li style="list-style-type:disc"><strong>Eficiència</strong> (més impacte per espai)</li></ul></div><div style="display:contents" dir="auto"><ul id="883e11ea-ca77-4666-9be6-ea0e2332baba" class="bulleted-list"><li style="list-style-type:disc"><strong>Equilibri</strong> (rols i consistència)</li></ul></div><div style="display:contents" dir="auto"><ul id="d837087a-3d69-48b5-876b-3905834f1fa6" class="bulleted-list"><li style="list-style-type:disc"><strong>Cost</strong> (reducció de despesa)</li></ul></div><div style="display:contents" dir="auto"><ul id="7826eb92-d345-4c00-b7d3-3512a1e06220" class="bulleted-list"><li style="list-style-type:disc"><strong>Compatibilitat</strong> (regles segons TH)</li></ul></div><div style="display:contents" dir="auto"><p id="c9b7e8d1-21f0-4d4f-b2f6-463575368a71" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="e0e34919-8914-4391-9d8b-9d3f300a259c" class="numbered-list" start="1"><li>Des del <strong>Resum</strong>, prem <strong>Optimitzar</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="74ab6716-0885-4af5-a8ce-cdc8923409c5" class="numbered-list" start="2"><li>Revisa canvis proposats per categories (tropes/encanteris/setge).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c05d78ef-d959-4a67-a281-3aa8fdfaf8d3" class="numbered-list" start="3"><li>Accepta o descarta l’equip.</li></ol></div><div style="display:contents" dir="auto"><p id="b880587a-4a6b-4c9f-9504-a6437f2c09f8" class="">💡 Consell: Si el resultat no t’encaixa amb el teu estil de joc, prova una segona optimització canviant algun heroi o algun component de l’equip.</p></div><div style="display:contents" dir="auto"><hr id="8679867d-eb4d-40c0-86ba-ce5930321469"/></div><div style="display:contents" dir="auto"><h1 id="7acb91ef-8c43-4b0c-90fb-6fef5fab2c91" class="">💾 10. Guardar exèrcit</h1></div><div style="display:contents" dir="auto"><h3 id="4031ff68-2167-4ff6-9025-c90cc8105208" class="">🏷️ Desar per reutilitzar i comparar</h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-80f9-bcaf-d8191962ac86" class="image"><a href="SaveArmy.png"><img style="width:703.96875px" src="SaveArmy.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="798c5cbe-730b-45d6-b882-59129bb72a07" class="">Descripció: Diàleg de guardat amb nom, descripció i confirmació.</p></div><div style="display:contents" dir="auto"><p id="d2793c04-3c3b-4c53-a466-8caca19f5a56" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="5ead3a1e-636a-4268-a639-9d77e9db1b8e" class="numbered-list" start="1"><li>Prem <strong>Guardar</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="5543cfd0-4b54-49e7-bdcf-d3916918473f" class="numbered-list" start="2"><li>Escriu un <strong>nom descriptiu</strong> (p. ex. “TH12 — Guerra — Control”).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7d4b9331-c9a7-429d-95ff-977d943e6269" class="numbered-list" start="3"><li>Afegeix descripció : <em>farm</em>, <em>guerra</em>, <em>híbrid</em>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c99b4ee5-292a-4a3b-86dd-3659266a7a9a" class="numbered-list" start="4"><li>Confirma</li></ol></div><div style="display:contents" dir="auto"><hr id="a7966411-76d1-4a09-9c28-e6d0ad757ac4"/></div><div style="display:contents" dir="auto"><h1 id="16ff3b7e-59bb-4ba4-833b-58b9e8dbf5e9" class="">💳 11. Sistema de tokens i pagaments</h1></div><div style="display:contents" dir="auto"><h3 id="96f8bd9b-6e05-4a4a-bbf6-695ec2870a64" class="">🪙 Què són els tokens</h3></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-808b-be21-eadedfd98df3" class="image"><a href="PaymentsHistory.png"><img style="width:703.984375px" src="PaymentsHistory.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2a313fa2-19ad-4683-a2e2-3be91fb71196" class="">Descripció: Pantalla de compra de tokens amb saldo, paquets i mètodes de pagament.</p></div><div style="display:contents" dir="auto"><p id="042f897d-0694-4c79-883a-d7968bfb8484" class="">Els tokens són una moneda interna per obtenir mes optimitzacions per defecte un usuari cuan es nou tindrá acces a 5 optimitzacions gratuites un cop s’haigin acabat l’usuari haura de comprar tokens per poguer optimitzar mes equips.</p></div><div style="display:contents" dir="auto"><h3 id="86ffcbca-62dd-4c80-b1f8-ff79d5295411" class="">🧾 Comprar tokens (flux d’usuari)</h3></div><div style="display:contents" dir="auto"><p id="c4123c4a-89ca-4539-b8a4-7de7a865cbb0" class="">📌 Passos:</p></div><div style="display:contents" dir="auto"><ol type="1" id="37a56903-f024-4033-8d97-443743dd3679" class="numbered-list" start="1"><li>Entra a <strong>Tokens</strong> des de la barra superior.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="fb327528-d499-483f-a861-efddaafdf359" class="numbered-list" start="2"><li>Tria un <strong>paquet</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="f10f05c2-074a-4a1c-b843-2217b1c0578f" class="numbered-list" start="3"><li>Selecciona un <strong>mètode de pagament</strong>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c7dc6c91-a313-4bdb-89f9-cfd13a9b026e" class="numbered-list" start="4"><li>Confirma la compra.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="253cb7e1-acf5-444d-bb17-13a44977a51d" class="numbered-list" start="5"><li>Verifica que el saldo s’actualitzi.</li></ol></div><div style="display:contents" dir="auto"><p id="ec7e4a74-fdcf-4d5c-82ce-cdf2ad2f5485" class="">💡 Consell: Si el saldo no es reflecteix al moment, espera uns minuts i revisa l’historial de compres abans de repetir el pagament.</p></div><div style="display:contents" dir="auto"><hr id="c66b20dd-e89a-465b-aa36-a7f9fb715075"/></div><div style="display:contents" dir="auto"><h1 id="7ca64507-9db6-4bc5-a5ad-1603924fd54a" class="">❓ 13. FAQ</h1></div><div style="display:contents" dir="auto"><h3 id="7cc40ee6-1883-4714-841e-6abe958ca84e" class="">13.1 Puc usar ArmyOptimizer sense compte?</h3></div><div style="display:contents" dir="auto"><p id="fdb91036-362d-46e6-bf2f-4d60f0b2fbca" class="">Pots explorar certes parts de l’apartat web, però  per poguer optimitzar,<strong>desar exèrcits</strong>  o veure l’<strong>historial</strong> normalment requereix un compte.</p></div><div style="display:contents" dir="auto"><h3 id="4398d395-6230-4ba9-af1d-ec344073f770" class="">13.2 Puc compartir una configuració?</h3></div><div style="display:contents" dir="auto"><p id="713589fc-8e15-4762-9c73-360c28be6444" class="">Si es podran compartir imatges de la configuració amb tercers.</p></div><div style="display:contents" dir="auto"><h3 id="76f55c75-a7b1-4c1a-bf18-7c5e4598b8a6" class="">13.3 Hi ha una “millor composició” universal?</h3></div><div style="display:contents" dir="auto"><p id="687d4e60-214b-4fd8-9e61-e0ae0e4e2876" class="">No. Depèn de:</p></div><div style="display:contents" dir="auto"><ul id="5cff4ba9-207f-4b28-8379-797433421a15" class="bulleted-list"><li style="list-style-type:disc">Town Hall i desbloqueigs</li></ul></div><div style="display:contents" dir="auto"><ul id="aaf40d5d-3015-40f3-9171-797abd0f7b7a" class="bulleted-list"><li style="list-style-type:disc">Objectiu (farm/guerra)</li></ul></div><div style="display:contents" dir="auto"><ul id="496c507a-d41f-4683-b870-f1ac41438720" class="bulleted-list"><li style="list-style-type:disc">Preferències</li></ul></div><div style="display:contents" dir="auto"><ul id="0a52eabe-0d7a-49ad-927c-53ae87eff578" class="bulleted-list"><li style="list-style-type:disc">Tipus de base rival</li></ul></div><div style="display:contents" dir="auto"><p id="76d56ee1-0d6e-4244-9730-ee06cdad9f1f" class="">💡 Consell: Usa l’optimització com a base i ajusta manualment segons el teu estil.</p></div><div style="display:contents" dir="auto"><hr id="babde459-51a1-4fb5-be77-090aea8ef588"/></div><div style="display:contents" dir="auto"><h1 id="d4475331-78d1-424e-96d6-13909dbd86d6" class="">🏁 14. Conclusió</h1></div><div style="display:contents" dir="ltr"><figure id="3584fbb9-c90a-8095-b721-c1d037d3503c" class="image"><a href="ArmyDetail.png"><img style="width:703.96875px" src="ArmyDetail.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="594f712a-8951-47c4-9578-3f51f305996e" class="">Descripció: Exemple d’un exèrcit optimitzat desat .</p></div><div style="display:contents" dir="auto"><p id="3342ceb2-c92e-48a7-893a-629ad2a08441" class="">ArmyOptimizer et guia en un flux clar i professional:</p></div><div style="display:contents" dir="auto"><ol type="1" id="8608b4fa-9fd4-4374-9523-50113a6ad1d3" class="numbered-list" start="1"><li>Town Hall</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="14e15475-f5e3-4f0a-9c68-3651f5419605" class="numbered-list" start="2"><li>Tropes</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7784bd43-9abe-4f39-b0a8-e75795f26b65" class="numbered-list" start="3"><li>Encanteris</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="4402ba55-8fff-4077-95d9-44d563b2eb8e" class="numbered-list" start="4"><li>Setge</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="bfabb1d9-6807-4116-8d7a-b90ca92008b4" class="numbered-list" start="5"><li>Consell</li></ol></div><div style="display:contents" dir="auto"><p id="0e367339-1f31-4976-9167-a7794365bf3a" class="">💡 Consell: Tingues sempre diferents  estrategies guardades com per exemple : </p></div><div style="display:contents" dir="auto"><ul id="3584fbb9-c90a-80f2-8d6b-c223f3709ea9" class="bulleted-list"><li style="list-style-type:disc">Un equip <strong>terrestre</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3584fbb9-c90a-809e-8a6d-c362c92dfe30" class="bulleted-list"><li style="list-style-type:disc">Un equip <strong>aeri</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3584fbb9-c90a-803c-a21a-e22ea7723ecb" class="bulleted-list"><li style="list-style-type:disc">Un equip de “<strong>farm</strong>”</li></ul></div><div style="display:contents" dir="auto"><p id="3584fbb9-c90a-802d-b539-deb3674572ed" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
