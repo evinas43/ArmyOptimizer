@@ -1,6 +1,6 @@
 # ⚔️ ArmyOptimizer — Manual d’Usuari
 
-![Banner](bannerArmyOptimizer.png)
+![Banner](docs/bannerArmyOptimizer.png)
 
 ## 📌 Informació
 
@@ -16,29 +16,7 @@
 
 ArmyOptimizer és una aplicació de planificació d’exèrcits pensada per construir, validar i optimitzar una composició completa segons el teu Town Hall, la capacitat disponible i l’objectiu de l’atac.
 
-![Home](home.png)
-
-**Descripció:**  
-Pantalla principal amb accés ràpid a crear un exèrcit, saldo de tokens i últimes configuracions.
-
----
-
-## ✅ Objectiu del manual
-
-Aquest document t’acompanya des de zero per:
-
-1. Crear un compte i iniciar sessió
-2. Entendre la pantalla principal i la navegació
-3. Seleccionar Town Hall i construir l’exèrcit
-4. Revisar el resum i optimitzar
-5. Gestionar tokens i pagaments
-
-💡 **Consell:**  
-Segueix aquest flux:
-
-```text
-Town Hall → Tropes → Encanteris → Setge → Resum → Optimització
-```
+![Home](docs/home.png)
 
 ---
 
@@ -46,7 +24,7 @@ Town Hall → Tropes → Encanteris → Setge → Resum → Optimització
 
 ## 📝 Crear compte
 
-![Register](e012c0f6-04a4-43f3-8ca4-2a2af0dab7de.png)
+![Register](docs/e012c0f6-04a4-43f3-8ca4-2a2af0dab7de.png)
 
 ### 📌 Passos
 
@@ -56,20 +34,11 @@ Town Hall → Tropes → Encanteris → Setge → Resum → Optimització
 4. Confirma la contrasenya
 5. Prem **Create Account**
 
-💡 **Consell:**  
-Encara no existeix recuperació automàtica de contrasenya.
-
-Contacte suport:
-
-```text
-evinas.dam@institutcampalans.net
-```
-
 ---
 
 ## 🔑 Iniciar sessió
 
-![Login](5a985ca4-d801-403b-9400-14345c95e25c.png)
+![Login](docs/5a985ca4-d801-403b-9400-14345c95e25c.png)
 
 ### 📌 Passos
 
@@ -81,38 +50,13 @@ evinas.dam@institutcampalans.net
 
 # 🏠 3. Pantalla principal
 
-## 🧭 Dashboard
-
-![Dashboard](home.png)
-
-### Elements principals
-
-- Perfil
-- Tokens
-- Últims exèrcits
-- Crear exèrcit
-- Historial
-
----
-
-## 🗂️ Flux recomanat
-
-1. Nou exèrcit
-2. Seleccionar Town Hall
-3. Afegir tropes
-4. Afegir encanteris
-5. Seleccionar màquina bèl·lica
-6. Revisar resum
-7. Optimitzar
-8. Guardar
+![Dashboard](docs/home.png)
 
 ---
 
 # 🏰 4. Selecció de Town Hall
 
-## 🏷️ Selector TH
-
-![TownHall](TownhallSelection.png)
+![TownHall](docs/TownhallSelection.png)
 
 ### 📌 Passos
 
@@ -124,9 +68,7 @@ evinas.dam@institutcampalans.net
 
 # ⚔️ 5. Selecció de tropes
 
-## 🪖 Construcció de l’exèrcit
-
-![Troops](TroopSelector.png)
+![Troops](docs/TroopSelector.png)
 
 ### 📌 Passos
 
@@ -137,197 +79,45 @@ evinas.dam@institutcampalans.net
 
 ---
 
-## 🧩 Recomanacions
-
-- **Tanc:** absorbir dany
-- **DPS:** fer mal principal
-- **Suport:** reforçar consistència
-
-💡 Evita exèrcits monocultiu.
-
----
-
 # 🧪 6. Selecció d'encanteris
 
-## ✨ Encanteris
-
-![Spells](SpellStep.png)
-
-### 📌 Passos
-
-1. Obrir Encanteris
-2. Escollir tipus
-3. Respectar espais
-4. Confirmar
-
----
-
-## 🎛️ Recomanacions
-
-- Acceleració → més velocitat
-- Congelació → més seguretat
-- Distracció → més control
+![Spells](docs/SpellStep.png)
 
 ---
 
 # 🏹 7. Màquines bèl·liques
 
-## 🧨 Selecció de setge
-
-![Siege](SiegeStep.png)
-
-### 📌 Passos
-
-1. Obrir Setge
-2. Escollir màquina
-3. Confirmar
-
-💡 El primer minut de l’atac és clau.
+![Siege](docs/SiegeStep.png)
 
 ---
 
 # 📊 8. Resum de l’exèrcit
 
-## 🧾 Vista resum
-
-![Summary](Summary.png)
-
-### 📌 Revisar
-
-- Town Hall correcte
-- Tropes completes
-- Encanteris correctes
-- Capacitat total
-- Cost total
-
----
-
-## ✅ Checklist
-
-- [ ] TH correcte
-- [ ] Tropes completes
-- [ ] Encanteris complets
-- [ ] Setge seleccionat
+![Summary](docs/Summary.png)
 
 ---
 
 # 🧠 9. Optimització
 
-## ⚙️ Sistema d’optimització
-
-![Optimized](OptimizedArmy.png)
-
-ArmyOptimizer optimitza segons:
-
-- Eficiència
-- Equilibri
-- Cost
-- Compatibilitat
-
----
-
-## 📌 Passos
-
-1. Prem **Optimitzar**
-2. Revisa suggeriments
-3. Accepta o descarta
-
-💡 Pots repetir l’optimització.
+![Optimized](docs/OptimizedArmy.png)
 
 ---
 
 # 💾 10. Guardar exèrcit
 
-## 🏷️ Guardat
-
-![Save](SaveArmy.png)
-
-### 📌 Passos
-
-1. Prem Guardar
-2. Escriu nom
-3. Escriu descripció
-4. Confirma
+![Save](docs/SaveArmy.png)
 
 ---
 
 # 💳 11. Tokens i pagaments
 
-## 🪙 Sistema de tokens
-
-![Payments](PaymentsHistory.png)
-
-Els usuaris nous tenen:
-
-```text
-5 optimitzacions gratuïtes
-```
-
-Després necessitaran tokens.
+![Payments](docs/PaymentsHistory.png)
 
 ---
 
-## 📌 Comprar tokens
+# 🏁 12. Conclusió
 
-1. Obrir Tokens
-2. Escollir paquet
-3. Seleccionar pagament
-4. Confirmar
-5. Verificar saldo
-
----
-
-# ❓ 12. FAQ
-
-## Puc usar ArmyOptimizer sense compte?
-
-Sí, parcialment.
-
-Per optimitzar i guardar exèrcits cal compte.
-
----
-
-## Puc compartir configuracions?
-
-Sí.
-
----
-
-## Existeix una millor composició?
-
-No.
-
-Depèn de:
-
-- Town Hall
-- Objectiu
-- Base rival
-- Estil de joc
-
----
-
-# 🏁 13. Conclusió
-
-![Army Detail](ArmyDetail.png)
-
-ArmyOptimizer ofereix un flux complet:
-
-1. Town Hall
-2. Tropes
-3. Encanteris
-4. Setge
-5. Optimització
-
----
-
-## 💡 Recomanacions finals
-
-Guarda diferents estratègies:
-
-- Exèrcit terrestre
-- Exèrcit aeri
-- Exèrcit farm
-- Exèrcit guerra
+![Army Detail](docs/ArmyDetail.png)
 
 ---
 
