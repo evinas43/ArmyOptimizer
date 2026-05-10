@@ -169,7 +169,7 @@
                   VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
 
-                <!-- 🔥 TU STYLE -->
+                
                 <ScrollViewer.Resources>
                     <Style TargetType="ScrollBar">
                         <Setter Property="Width" Value="10"/>
@@ -244,7 +244,7 @@
               BorderThickness="1"
               IsChecked="{Binding IsSelected}">
 
-                                    <!-- 👇 NUEVO CONTENIDO -->
+                                  
                                     <StackPanel HorizontalAlignment="Center">
 
                                         <Image Source="{Binding Image}"
@@ -276,7 +276,7 @@
                                 CornerRadius="6"
                                 Padding="6">
 
-                                                            <!-- 👇 ESTO YA FUNCIONA CON EL STACKPANEL -->
+                                                           
                                                             <ContentPresenter
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>

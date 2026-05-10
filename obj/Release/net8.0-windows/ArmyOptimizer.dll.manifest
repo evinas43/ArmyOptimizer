@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ArmyOptimizer.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ArmyOptimizer.exe" version="1.0.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -62,13 +62,13 @@
       <dsig:DigestValue>WxLKFJhxglA2BXfcZ3ekUl9ElTw7pRHnQ9KI4Zcasto=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ArmyOptimizer.dll" size="1350656">
+  <file name="ArmyOptimizer.dll" size="1351168">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Lm56qzs3+uNn9Gibmpe12THxJdWqk3oHSXeK9NFcgIo=</dsig:DigestValue>
+      <dsig:DigestValue>nnBhTTXCFO5OguWIYO5uov1DKmQsH68ffmamQr1tKbQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ArmyOptimizer.dll.config" size="294">
@@ -80,13 +80,13 @@
       <dsig:DigestValue>QVCkpdO6CAbtGHyeIjnsf5AMsbIygCB5boQ0pe0zy4U=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ArmyOptimizer.exe" size="151040">
+  <file name="ArmyOptimizer.exe" size="151552">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>sbgzxS+JgIiEOZEnhJxvDu+pj+IzN497CRyVTl0BJdY=</dsig:DigestValue>
+      <dsig:DigestValue>k45VhaFcDimHVj4fLmDuLUgaeNWlWSATQErqDEvYvu4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ArmyOptimizer.runtimeconfig.json" size="515">
@@ -96,6 +96,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>ia0epcnCC2smZUfvJ8CuOEDKtWQtPCrt8GtwJiRWcd0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Images\ArmyOptimizerLogo_black_v2.ico" size="370070">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>tCnSV+cfQ0D+Fzy+YR7bu8Fx+zacTQ7BER4FjKqriZU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="MaterialDesignColors.dll" size="320512">

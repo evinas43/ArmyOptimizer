@@ -14,7 +14,6 @@ namespace ArmyOptimizer.ViewModels
 
         public ObservableCollection<ArmySummary> Armies { get; set; } = new();
         public int TokensRemaining { get; set; }
-        //colorchanging tokens
         public Brush TokenColor => TokensRemaining > 0 ? Brushes.Gold : Brushes.Red;
         public string WelcomeText { get; }
 

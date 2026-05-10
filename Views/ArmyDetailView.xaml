@@ -164,7 +164,7 @@
 
                 </UniformGrid>
 
-                <!-- 🔥 GRID REAL -->
+                <!--GRID REAL -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -352,7 +352,7 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- 💡 AI ADVICE FULL WIDTH -->
+                    <!-- AI ADVICE FULL WIDTH -->
                     <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                             Background="#111c2b"
                             CornerRadius="12"

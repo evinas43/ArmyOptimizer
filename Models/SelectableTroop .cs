@@ -12,8 +12,7 @@ namespace ArmyOptimizer.Models
         public RelayCommand IncreaseCommand { get; set; }
         public RelayCommand DecreaseCommand { get; set; }
 
-        // Bitmap image loaded asynchronously to avoid UI delays and missing images
-        
+        // bitmap for the UI to display, loaded from ImageUrl        
         private BitmapImage _image;
         public BitmapImage Image
         {

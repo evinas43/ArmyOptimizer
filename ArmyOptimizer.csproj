@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Images\ArmyOptimizerLogo_black_v2.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +22,7 @@
   <ItemGroup>
     <Content Include="Images\ArmyOptimizerLogo_black_v2.ico" />
   </ItemGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.3.1-ci1271" />
   </ItemGroup>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArmyOptimizer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8dd68e0a5e70618a955a146b2cbb9e708be96b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b133d0427e3dbe5494539e8480843ba4ac6679d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArmyOptimizer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArmyOptimizer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

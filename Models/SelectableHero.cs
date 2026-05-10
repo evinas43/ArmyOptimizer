@@ -13,7 +13,7 @@ namespace ArmyOptimizer.Models
         public string Name { get; set; }
         public string ImageUrl { get; set; }
 
-        // Bitmap image loaded asynchronously to avoid UI delays and missing images
+        // bitmap for the UI to display, loaded from ImageUrl
 
         private BitmapImage _image;
         public BitmapImage Image
